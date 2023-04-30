@@ -1,0 +1,22 @@
+.container {
+    max-width: 1320px;
+    margin: 0 auto;
+    width: 95%;
+}
+.search-form{
+    margin: 4rem 0;
+}
+.search-input{
+    border: 3px solid #ccc;
+    padding: 12px 20px;
+    outline:none;
+    transition: 0.5s;
+}
+.search-input:focus {
+    border: 3px solid #555;
+}
+.search-button{
+    border: 3px solid #ccc;
+    border-left: none;
+    padding: 12px 5px;
+}
