@@ -1,10 +1,13 @@
-import Header from "../components/layout/Header";
+import GridNews from "../components/homepage/GridNews";
+import Slider from "../components/homepage/Slider";
 const HomePage = () => {
-    return (
-        <>
-            <Header />
-        </> 
-     );
+    return ( 
+        <div className="w-100 d-flex align-items-center justify-content-center flex-column" >
+            <GridNews/>
+            <p>hola</p>
+            <Slider titulo={'Noticias Recientes'} />
+        </div>
+     )
 }
  
 export default HomePage;

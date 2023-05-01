@@ -1,7 +1,7 @@
 import { useState, useRef, useMemo, useCallback } from "react";
 import { searchArticle, showHeadLines } from "../services/article";
 
-const useArticle = (search, sort) => {
+const useArticle = (search, check) => {
     const [articles, setArticles] = useState([])
     const previuosSearch = useRef(search)
     const firstArticle = useRef(true)
@@ -22,10 +22,10 @@ const useArticle = (search, sort) => {
         firstArticle.current = false
     }
     const sortedArticle = useMemo(() => {
-        return sort 
+        return check.sort 
         ? [...articles].sort((a, b) => a.title.localeCompare(b.title))
         :articles
-    },[sort, articles ])
+    },[check.sort, articles ])
     return{articles: sortedArticle , getArticle, getHeadLines}
 }
 
