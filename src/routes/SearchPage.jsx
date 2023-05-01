@@ -14,19 +14,23 @@ const SearchPage = () => {
         news: true,
     })
     const {sort, post, news} = check
+    // Custom hook
     const {search, setSearch, error} = useSearch();
     const {articles, getArticle, getHeadLines} = useArticle(search, check)
 
+    // show the headlines after the page has loaded
     useEffect(() => {
         getHeadLines()
     }, [])
 
+    // only perform the search when getArticle change
     const debaunceGetArticle = useCallback(
         debounce(search =>{
             getArticle(search)
         },500),
     [getArticle])  
 
+    // perform the search
     const handleChange = e => {
         const newSearch = e.target.value;
         setSearch(newSearch)
@@ -38,6 +42,7 @@ const SearchPage = () => {
         getArticle(search)
 
     }
+    //TODO enable search for either news or post
     const handleCheck = e => {
         setCheck({
             ...check,
@@ -67,7 +72,7 @@ const SearchPage = () => {
                     </div>
                 </form>
                 {error && <p style={{color: 'red'}}>{error}</p>}
-               <Article articulos={articles}/>
+               <Article articles={articles}/>
             </main>
         </>
     );

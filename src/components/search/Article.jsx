@@ -1,20 +1,22 @@
+import questionMarkImage from "../../assets/img/question-mark.jpg";
 import "../../../css/article.css";
 
-const ArticlesResult = ({articulos}) => {
+const ArticlesResult = ({articles}) => {
+    // Display the current date
     const getTime = (time) => {
         return new Date(time).toLocaleDateString()
     }
-
+    
     return(
         <ul className="articles">
         {
-        articulos.map(articulo => (
-            <li className="article" key={articulo.id}>
-                <a href={articulo.url} target="_blank">
-                    <img src={articulo.image} alt={articulo.title} />
+        articles.map(article => (
+            <li className="article" key={article.id}>
+                <a href={article.url} target="_blank">
+                    <img src={article.image? article.image :questionMarkImage} alt={article.title} />
                 </a>
-                <h6>{getTime(articulo.publishedAt)}</h6>
-                <h6>{articulo.title}</h6>
+                <h6>{getTime(article.publishedAt)}</h6>
+                <h6>{article.title}</h6>
             </li>
         ))
         }
@@ -24,16 +26,16 @@ const ArticlesResult = ({articulos}) => {
 
 const NoArticlesResult = () => {
     return(
-        <p>No se encontraron resultados</p>
+        <p>no results were found</p>
     )
 }
 
-const Article = ({articulos}) => {
-    const hasArticle = articulos?.length > 0
+const Article = ({articles}) => {
+    const hasArticle = articles?.length > 0
 
     return (
         hasArticle
-            ? <ArticlesResult articulos={articulos}/>
+            ? <ArticlesResult articles={articles}/>
             : <NoArticlesResult />
       )
 }

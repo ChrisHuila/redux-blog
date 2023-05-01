@@ -4,7 +4,6 @@ const HomePage = () => {
     return ( 
         <div className="w-100 d-flex align-items-center justify-content-center flex-column" >
             <GridNews/>
-            <p>hola</p>
             <Slider titulo={'Noticias Recientes'} />
         </div>
      )

@@ -21,6 +21,7 @@ const useArticle = (search, check) => {
         setArticles(headLines)
         firstArticle.current = false
     }
+    // sort by title
     const sortedArticle = useMemo(() => {
         return check.sort 
         ? [...articles].sort((a, b) => a.title.localeCompare(b.title))

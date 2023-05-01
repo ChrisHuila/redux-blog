@@ -3,22 +3,24 @@ import { useEffect, useState, useRef } from "react";
 const useSearch = () => {
     const [search, setSearch] = useState('')
     const [ error, setError ] = useState(null)
+    // This value is changeable throughout the life cycle of the component
     const isfirtInput = useRef(true);
+
+    // Validate the search query
     useEffect(() => {
+        // "If it is the first input, do not show the error."
         if(isfirtInput.current){
             isfirtInput.current = search === '';
             return
         }
         if(search === '') {
-            setError('No se puede buscar un articulo vacio'); 
+            setError('Type your Search'); 
             return
         }
-        if (search.length <= 3) {
-            setError('la busqueda tiene que ser mayor de 3 letras'); 
-            return
-        }
+        
         setError(null)
     }, [search])
+
     return {search, setSearch, error }
 }
 export default useSearch;
