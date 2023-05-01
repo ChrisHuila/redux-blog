@@ -44,9 +44,19 @@ const SearchPage = () => {
             <Header />
             <main className="container">
                 <form action="" className="search-form" onSubmit={handleSubmit}>
-                    <input  type="text" value={search} name="query" onChange={handleChange} className="search-input" placeholder="search" />
-                    <button  type="submit" className="search-button"> Search</button>
-                    <input type="checkbox" onChange={handleSort} checked={sort} />
+                    <div className="search-form_container">
+                        <div className="search-div_query">
+                            <input  type="text" value={search} name="query" onChange={handleChange} className="search-input" placeholder="What are you looking for?" />
+                            <button  type="submit" className="search-button"> <i className="bi bi-search"></i></button>
+                        </div>
+                        <div className="search-div_checkbox">
+                            <input type="checkbox" onChange={handleSort} checked={sort} id="news"/>
+                            <label htmlFor="news">News</label>
+
+                            <input type="checkbox" onChange={handleSort} checked={sort} id="post"/>
+                            <label htmlFor="post">Post</label>
+                        </div>
+                    </div>
                 </form>
                 {error && <p style={{color: 'red'}}>{error}</p>}
                <Article articulos={articles}/>
