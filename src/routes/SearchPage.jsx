@@ -1,28 +1,39 @@
 import { useState, useCallback, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";    
 import debounce from "just-debounce-it";
 import Article from "../components/search/Article";
 import useArticle from "../hooks/useArticle";
 import useSearch from "../hooks/useSearch";
 import "../../css/searchpage.css";
 
-
+// Action Redux
+import { showNews, showPost } from "../actions/checkboxAction";
 
 const SearchPage = () => {
-    const [check, setCheck] = useState({
-        sort: false,
-        post: false,
-        news: true,
-    })
-    const {sort, post, news} = check
+    // access to the state
+    const post = useSelector(state => state.checkbox.post);
+    const news = useSelector(state => state.checkbox.news);
+    const dispatch = useDispatch();
+
+    const [sort , setSort] = useState(false);
     // Custom hook
     const {search, setSearch, error} = useSearch();
-    const {articles, getArticle, getHeadLines} = useArticle(search, check)
+    const {articles, getArticle, getHeadLines} = useArticle(search, sort, news)
 
     // show the headlines after the page has loaded
     useEffect(() => {
         getHeadLines()
     }, [])
 
+    const handleCheck = e => {
+        const {name} = e.target
+        if(name === 'post') {
+            dispatch(showPost())
+        }else {
+            dispatch(showNews()) 
+        }
+
+    }
     // only perform the search when getArticle change
     const debaunceGetArticle = useCallback(
         debounce(search =>{
@@ -43,11 +54,8 @@ const SearchPage = () => {
 
     }
     //TODO enable search for either news or post
-    const handleCheck = e => {
-        setCheck({
-            ...check,
-            [e.target.name]: !check[e.target.name]
-        })
+    const handleSort = e => {
+        setSort(!sort)
     }
     
     return ( 
@@ -63,10 +71,10 @@ const SearchPage = () => {
                             <input type="checkbox" name="news" checked={news} onChange={handleCheck} id="news"/>
                             <label htmlFor="news">News</label>
 
-                            <input type="checkbox" name="post" checked={post} onChange={handleCheck} id="post"/>
+                            <input type="checkbox" name="post" checked={post} onChange={handleCheck}  id="post"/>
                             <label htmlFor="post">Post</label>
 
-                            <input type="checkbox" name="sort" onChange={handleCheck} checked={sort} id="sort"/>
+                            <input type="checkbox" name="sort" onChange={handleSort} checked={sort} id="sort"/>
                             <label htmlFor="sort">Sort by name</label>
                         </div>
                     </div>
