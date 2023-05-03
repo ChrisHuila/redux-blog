@@ -19,6 +19,7 @@ function App() {
     {
       path: "/search",
       element: <SearchPage />,
+      nodeRef: createRef()
     },
     {
       path: "/trending", 
@@ -53,10 +54,8 @@ function App() {
       return ( 
       
        <>
-      
         <Header/>
    
-
        <div className="content" >
         <SwitchTransition>
           <CSSTransition
@@ -74,9 +73,6 @@ function App() {
           </CSSTransition>
         </SwitchTransition>
        </div>
-
-
-       
        </>
       )
    }

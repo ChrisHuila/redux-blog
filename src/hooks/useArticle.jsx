@@ -30,6 +30,7 @@ const useArticle = (search, sort, news) => {
         ? [...articles].sort((a, b) => a.title.localeCompare(b.title))
         :articles
     },[sort, articles ])
+    
     return{articles: sortedArticle , getArticle, getHeadLines}
 }
 

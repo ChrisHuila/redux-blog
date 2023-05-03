@@ -63,7 +63,26 @@
     width: 100%;
     background-color: #0e2342;
 }
-
+.header-icons{
+    display: flex;
+    gap: 2rem
+}
+.header-search{
+    background-color: var(--first-color);
+    color: var(--body-color);
+    font-size: var(--normal-font-size);
+    padding: .5rem 1rem;
+    min-width: 100px;
+    border: none;
+    border-radius:10px;
+    outline: none;
+    text-decoration: none;
+    transition: .6s ease all;
+}
+.header-search:hover{
+    background-color: var(--first-color-alt);
+    color: #fff;
+}
 .networks-box{
     margin-right: 20px;
     display: flex; align-items: center; justify-content: center;

@@ -31,18 +31,18 @@ const Header = () => {
             to={'/entry'}>
             Noticias
             </NavLink>
-           
             </div>
 
-            <div className="networks-box">
-                <i className="bi bi-twitch h4 m-0 social-network"></i>
-                <i className="bi bi-twitter h4 m-0 social-network"></i>
-                <i className="bi bi-youtube h4 m-0 social-network"></i>
+            <div className="header-icons">
+                <Link to={"/search"} className="header-search"> 
+                Search <i className="bi bi-search" ></i>
+                </Link>
+                <div className="networks-box">
+                    <i className="bi bi-twitch h4 m-0 social-network"></i>
+                    <i className="bi bi-twitter h4 m-0 social-network"></i>
+                    <i className="bi bi-youtube h4 m-0 social-network"></i>
+                </div>
             </div>
-            <Link to={"/search"} className="btn btn-primary">
-                <i className="bi bi-search" ></i>
-            </Link>
-        
         </div>
      
      )

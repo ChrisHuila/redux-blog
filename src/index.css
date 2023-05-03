@@ -1,3 +1,42 @@
+:root {
+  /*========== Colors ==========*/
+  --first-color: #0e2342;
+  --first-color-alt: #0a58ca;
+  --body-color: #fff;
+  /* --title-color:
+  --text-color:
+   */
+
+  /*========== typography ==========*/
+  --biggest-font-size: 1.75rem;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --normal-font-size: .938rem;
+  --small-font-size: .813rem;
+  --smaller-font-size: .75rem;
+  --tiny-font-size: .625rem;
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+  --z-modal: 1000;
+}
+
+/* Responsive typography */
+@media screen and (min-width: 968px) {
+  :root {
+    --biggest-font-size: 2.5rem;
+    --h1-font-size: 2.25rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+    --smaller-font-size: .813rem;
+  }
+}
+body{
+  background-color: var(--body-color);
+}
 .content {
     position: relative;
     width: 100%;

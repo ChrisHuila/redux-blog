@@ -12,9 +12,11 @@ const ArticlesResult = ({articles}) => {
         {
         articles.map(article => (
             <li className="article" key={article.id}>
-                <a href={article.url} target="_blank">
-                    <img src={article.image? article.image :questionMarkImage} alt={article.title} />
-                </a>
+                <div className="articles-image-box">
+                    <a href={article.url} target="_blank">
+                        <img src={article.image? article.image :questionMarkImage} alt={article.title} />
+                    </a>
+                </div>
                 <h6>{getTime(article.publishedAt)}</h6>
                 <h6>{article.title}</h6>
             </li>
