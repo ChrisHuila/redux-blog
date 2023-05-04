@@ -1,5 +1,5 @@
 import questionMarkImage from "../../assets/img/question-mark.jpg";
-import "../../../css/article.css";
+import "./article.css";
 
 const ArticlesResult = ({articles}) => {
     // Display the current date
@@ -17,8 +17,8 @@ const ArticlesResult = ({articles}) => {
                         <img src={article.image? article.image :questionMarkImage} alt={article.title} />
                     </a>
                 </div>
-                <h6>{getTime(article.publishedAt)}</h6>
-                <h6>{article.title}</h6>
+                <p className="article-date">{getTime(article.publishedAt)}</p>
+                <p className="article-headline">{article.title}</p>
             </li>
         ))
         }

@@ -1,12 +1,13 @@
+
 .articles {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 42px 16px;
+    gap: 32px 16px;
     height: 100%;
-    
+    font-family: 'Roboto', sans-serif;
 }
 .article {
     height: 100%;
@@ -27,4 +28,12 @@
 
 .article img:hover{
     transform: scale(1.05);
+}
+.article-date{
+    font-weight: 300;
+}
+.article-headline{
+    font-size: var(--normal-font-size);
+    color: var(--text-color);
+    font-weight: 400;
 }
