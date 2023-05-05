@@ -2,12 +2,15 @@ import { useState, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";    
 import debounce from "just-debounce-it";
 import Article from "../components/search/Article";
+import Pagination from "../components/search/Pagination";
 import useArticle from "../hooks/useArticle";
 import useSearch from "../hooks/useSearch";
 import "../../css/searchpage.css";
 
 // Action Redux
 import { showNews, showPost } from "../actions/checkboxAction";
+
+const totalCount = 300;
 
 const SearchPage = () => {
     // access to the state
@@ -57,7 +60,7 @@ const SearchPage = () => {
     const handleSort = e => {
         setSort(!sort)
     }
-    
+ 
     return ( 
         <>
             <main className="container">
@@ -80,7 +83,10 @@ const SearchPage = () => {
                     </div>
                 </form>
                 {error && <p style={{color: 'red'}}>{error}</p>}
+               <Pagination totalCount={totalCount}/>
+
                <Article articles={articles}/>
+               
             </main>
         </>
     );
