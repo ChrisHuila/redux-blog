@@ -1,4 +1,4 @@
-import { useState, useRef, useMemo, useCallback } from "react";
+import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { searchArticle, showHeadLines } from "../services/article";
 
 const useArticle = (search, sort, news) => {
@@ -24,14 +24,20 @@ const useArticle = (search, sort, news) => {
         setArticles(headLines)
         firstArticle.current = false
     }
+
     // sort by title
     const sortedArticle = useMemo(() => {
         return sort 
         ? [...articles].sort((a, b) => a.title.localeCompare(b.title))
         :articles
     },[sort, articles ])
+
+    // show the headlines after the page has loaded
+    useEffect(() => {
+        getHeadLines()
+    }, [])
     
-    return{articles: sortedArticle , getArticle, getHeadLines}
+    return{articles: sortedArticle , getArticle}
 }
 
 export default useArticle;

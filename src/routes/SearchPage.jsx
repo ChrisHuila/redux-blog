@@ -19,14 +19,11 @@ const SearchPage = () => {
     const dispatch = useDispatch();
 
     const [sort , setSort] = useState(false);
+    const [currentpage, setCurrentPage] = useState(1)
     // Custom hook
     const {search, setSearch, error} = useSearch();
-    const {articles, getArticle, getHeadLines} = useArticle(search, sort, news)
-
-    // show the headlines after the page has loaded
-    useEffect(() => {
-        getHeadLines()
-    }, [])
+    const {articles, getArticle} = useArticle(search, sort, news)
+ 
 
     const handleCheck = e => {
         const {name} = e.target
@@ -83,9 +80,15 @@ const SearchPage = () => {
                     </div>
                 </form>
                 {error && <p style={{color: 'red'}}>{error}</p>}
-               <Pagination totalCount={totalCount}/>
+               <Pagination 
+               totalCount={totalCount}
+               currentpage={currentpage}
+               setCurrentPage={setCurrentPage}
+               />
 
-               <Article articles={articles}/>
+               <Article 
+               articles={articles} 
+               />
                
             </main>
         </>
