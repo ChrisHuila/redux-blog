@@ -1,4 +1,4 @@
-import {useMemo, useRef, useState} from 'react';
+import {useMemo, useRef} from 'react';
 
 export const DOTS = '...';
 
@@ -10,9 +10,9 @@ const range = (start, end) => {
 
 export const usePagination = ({currentpage, siblingCount, totalPageCount}) => {
     
-    const newMiddleRange = useRef(1);
+    const newMiddleRangeRight = useRef(1);
+    const newMiddleRangeLeft = useRef(1);
     const previousMiddleRange = useRef([]);
-    const [middlenumber, setMiddleNumber] = useState([])
 
      const paginationRange = useMemo(() => {
         const firstPageIndex = 1;
@@ -39,21 +39,17 @@ export const usePagination = ({currentpage, siblingCount, totalPageCount}) => {
 
         // Enable middle range
         if(shouldShowLeftDots && shouldShowRightDots ) {
-            let shiftRange  = newMiddleRange.current - 4;
-
-            // Put the number that enable a new middle range
-            if(!middlenumber.includes(shiftRange)){
-                setMiddleNumber([...middlenumber, shiftRange])
-            } 
-            
-            if(newMiddleRange.current <= currentpage || middlenumber.includes(currentpage)){
+                   
+            if(newMiddleRangeRight.current <= currentpage || newMiddleRangeLeft.current >= currentpage  ){
 
                 let leftwardRange = leftSiblingIndex -1;
                 let rightwardRange = rightSiblingIndex + 3;
 
                 let middleRange = range(leftwardRange, rightwardRange )
-
-                newMiddleRange.current = rightwardRange;
+                
+                // Set the conditions to generate a new range 
+                newMiddleRangeRight.current = rightwardRange;
+                newMiddleRangeLeft.current = leftwardRange;
 
                 // "prevent data loss" 
                 previousMiddleRange.current = [firstPageIndex, DOTS, ...middleRange, DOTS, lastPageIndex]
@@ -70,7 +66,7 @@ export const usePagination = ({currentpage, siblingCount, totalPageCount}) => {
            return[firstPageIndex, DOTS, ...rightRange ]
         }
 
-     },[currentpage, totalPageCount, middlenumber ]);
+     },[currentpage, totalPageCount ]);
 
    return paginationRange;
 }

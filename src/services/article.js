@@ -7,9 +7,10 @@ export const searchArticle = async({search, currentpage}) => {
         const res = await fetch(url);
         const json = await res.json()
 
-        const articulos = json.articles
         const totalCount = json.totalResults
-        const resultArticle =  articulos?.map(articulo => ({
+        const article = json.articles
+
+        const resultArticle =  article?.map(articulo => ({
             author: articulo.author,
             content: articulo.content,
             description: articulo.description,
@@ -21,9 +22,9 @@ export const searchArticle = async({search, currentpage}) => {
             id: Date.now()*Math.random()*10
             }))
 
-            return[totalCount, resultArticle]
+            return[totalCount, resultArticle, res.ok ]
     } catch (error) {
-        throw new error('error al buscar los articulos')
+        console.log('hubo un error');
     }
   
 }

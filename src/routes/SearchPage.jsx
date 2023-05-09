@@ -10,8 +10,6 @@ import "../../css/searchpage.css";
 // Action Redux
 import { showNews, showPost } from "../actions/checkboxAction";
 
-// const totalCount = 300;
-
 const SearchPage = () => {
     // access to the state
     const post = useSelector(state => state.checkbox.post);
@@ -22,7 +20,7 @@ const SearchPage = () => {
     const [currentpage, setCurrentPage] = useState(1)
     // Custom hook
     const {search, setSearch, error} = useSearch();
-    const {articles,totalcount, getArticle} = useArticle(search, sort, news, currentpage)
+    const {articles,totalcount, errorfetch ,getArticle} = useArticle(search, sort, news, currentpage)
  
 
     const handleCheck = e => {
@@ -45,6 +43,7 @@ const SearchPage = () => {
     const handleChange = e => {
         const newSearch = e.target.value;
         setSearch(newSearch)
+        setCurrentPage(1)
         debaunceGetArticle(newSearch, currentpage )
     }
     
@@ -80,9 +79,11 @@ const SearchPage = () => {
                     </div>
                 </form>
                 {error && <p style={{color: 'red'}}>{error}</p>}
+                {errorfetch && <p style={{color: 'red'}}>There was an error with the server </p>}
                <Pagination 
                totalCount={totalcount}
                currentpage={currentpage}
+               errorfetch={errorfetch}
                setCurrentPage={setCurrentPage}
                />
 

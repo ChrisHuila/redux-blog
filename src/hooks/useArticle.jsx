@@ -4,6 +4,8 @@ import { searchArticle, showHeadLines } from "../services/article";
 const useArticle = (search, sort, news, currentpage) => {
     const [articles, setArticles] = useState([])
     const [totalcount, setTotalCount] = useState(1);
+    const [errorfetch, setErrorFetch] = useState(false);
+    
     const previousSearch = useRef(search)
     const previousPage = useRef(currentpage);
     const firstArticle = useRef(true)
@@ -17,9 +19,12 @@ const useArticle = (search, sort, news, currentpage) => {
             if(!news) return
             previousSearch.current = search;
             previousPage.current = currentpage;
-            const [totalCount, article] = await searchArticle({search, currentpage});
+
+            const [totalCount, article, ok] = await searchArticle({search, currentpage});
+            
             setTotalCount(totalCount)
             setArticles(article)
+            setErrorFetch(!ok);
         }
     ,[news, currentpage]) 
    
@@ -48,7 +53,7 @@ const useArticle = (search, sort, news, currentpage) => {
         getHeadLines()
     }, [])
     
-    return{articles: sortedArticle , getArticle, totalcount}
+    return{articles: sortedArticle , errorfetch, getArticle, totalcount}
 }
 
 export default useArticle;

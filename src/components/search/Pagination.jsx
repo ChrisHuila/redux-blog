@@ -2,7 +2,7 @@ import { usePagination, DOTS } from "../../hooks/usePagination";
 import "./pagination.css"
 
 const Pagination = (props) => {
-    const {totalCount, currentpage, setCurrentPage} =  props
+    const {totalCount, currentpage,errorfetch, setCurrentPage} =  props
 
     const pageSize = 20;
     const siblingCount = 1;
@@ -11,7 +11,7 @@ const Pagination = (props) => {
     const paginationRange = usePagination({currentpage, siblingCount, totalPageCount})
     
 //   console.log(paginationRange);
-    if(totalCount <= 1) return
+    if(totalCount <= 1 || errorfetch) return
  
     return(
         <>
