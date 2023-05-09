@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { searchArticle, showHeadLines } from "../services/article";
 
-const useArticle = (search, sort, news, currentpage) => {
+const useArticle = (search, sort, news, currentpage, setLoading) => {
     const [articles, setArticles] = useState([])
     const [totalcount, setTotalCount] = useState(1);
     const [errorfetch, setErrorFetch] = useState(false);
@@ -25,6 +25,7 @@ const useArticle = (search, sort, news, currentpage) => {
             setTotalCount(totalCount)
             setArticles(article)
             setErrorFetch(!ok);
+            setLoading(false)
         }
     ,[news, currentpage]) 
    
@@ -32,6 +33,7 @@ const useArticle = (search, sort, news, currentpage) => {
         if(!firstArticle.current) return
         const headLines = await showHeadLines()
         setArticles(headLines)
+        setLoading(false)
         firstArticle.current = false
     }
 

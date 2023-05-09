@@ -18,9 +18,11 @@ const SearchPage = () => {
 
     const [sort , setSort] = useState(false);
     const [currentpage, setCurrentPage] = useState(1)
+    const [loading, setLoading] = useState(true)
+    
     // Custom hook
     const {search, setSearch, error} = useSearch();
-    const {articles,totalcount, errorfetch ,getArticle} = useArticle(search, sort, news, currentpage)
+    const {articles,totalcount, errorfetch ,getArticle} = useArticle(search, sort, news, currentpage, setLoading)
  
 
     const handleCheck = e => {
@@ -50,7 +52,6 @@ const SearchPage = () => {
     const handleSubmit = e => {
         e.preventDefault();
         getArticle(search, currentpage)
-
     }
     //TODO enable search for either news or post
     const handleSort = e => {
@@ -88,7 +89,8 @@ const SearchPage = () => {
                />
 
                <Article 
-               articles={articles} 
+               articles={articles}
+               loading={loading} 
                />
 
                 <Pagination 
