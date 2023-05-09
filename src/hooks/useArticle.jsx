@@ -3,6 +3,7 @@ import { searchArticle, showHeadLines } from "../services/article";
 
 const useArticle = (search, sort, news, currentpage) => {
     const [articles, setArticles] = useState([])
+    const [totalcount, setTotalCount] = useState(1);
     const previousSearch = useRef(search)
     const previousPage = useRef(currentpage);
     const firstArticle = useRef(true)
@@ -11,13 +12,13 @@ const useArticle = (search, sort, news, currentpage) => {
 
             //if the current search query is the same as the previous one return  
             if(previousSearch.current === search && previousPage.current === currentpage) return
-            console.log(search, currentpage );
 
             // Enable only when news is checked
             if(!news) return
             previousSearch.current = search;
             previousPage.current = currentpage;
-            const article = await searchArticle({search});
+            const [totalCount, article] = await searchArticle({search, currentpage});
+            setTotalCount(totalCount)
             setArticles(article)
         }
     ,[news, currentpage]) 
@@ -47,7 +48,7 @@ const useArticle = (search, sort, news, currentpage) => {
         getHeadLines()
     }, [])
     
-    return{articles: sortedArticle , getArticle}
+    return{articles: sortedArticle , getArticle, totalcount}
 }
 
 export default useArticle;

@@ -11,10 +11,8 @@ const Pagination = (props) => {
     const paginationRange = usePagination({currentpage, siblingCount, totalPageCount})
     
 //   console.log(paginationRange);
-    const styleCurrentButton = {
-        backgroundColor: '#ccc',
-        color: '#fff'
-    } 
+    if(totalCount <= 1) return
+ 
     return(
         <>
             <ul className="pagination" >

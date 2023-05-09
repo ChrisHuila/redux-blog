@@ -1,15 +1,15 @@
 const apiKey ='ef68e173335b488999ff04629000ae4d';
 
-export const searchArticle = async({search}) => {
+export const searchArticle = async({search, currentpage}) => {
     if(search === '') return null;
-    const url = `https://newsapi.org/v2/everything?q=${search}&apiKey=${apiKey}&language=es`;
-
+    const url = `https://newsapi.org/v2/everything?q=${search}&apiKey=${apiKey}&language=es&pageSize=20&page=${currentpage}`;
     try {
         const res = await fetch(url);
         const json = await res.json()
 
         const articulos = json.articles
-        return articulos?.map(articulo => ({
+        const totalCount = json.totalResults
+        const resultArticle =  articulos?.map(articulo => ({
             author: articulo.author,
             content: articulo.content,
             description: articulo.description,
@@ -21,6 +21,7 @@ export const searchArticle = async({search}) => {
             id: Date.now()*Math.random()*10
             }))
 
+            return[totalCount, resultArticle]
     } catch (error) {
         throw new error('error al buscar los articulos')
     }

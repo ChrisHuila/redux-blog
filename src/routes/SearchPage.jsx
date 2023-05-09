@@ -10,7 +10,7 @@ import "../../css/searchpage.css";
 // Action Redux
 import { showNews, showPost } from "../actions/checkboxAction";
 
-const totalCount = 300;
+// const totalCount = 300;
 
 const SearchPage = () => {
     // access to the state
@@ -22,7 +22,7 @@ const SearchPage = () => {
     const [currentpage, setCurrentPage] = useState(1)
     // Custom hook
     const {search, setSearch, error} = useSearch();
-    const {articles, getArticle} = useArticle(search, sort, news, currentpage)
+    const {articles,totalcount, getArticle} = useArticle(search, sort, news, currentpage)
  
 
     const handleCheck = e => {
@@ -81,7 +81,7 @@ const SearchPage = () => {
                 </form>
                 {error && <p style={{color: 'red'}}>{error}</p>}
                <Pagination 
-               totalCount={totalCount}
+               totalCount={totalcount}
                currentpage={currentpage}
                setCurrentPage={setCurrentPage}
                />
