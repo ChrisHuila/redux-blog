@@ -4,7 +4,7 @@ import scrollLink from "../helpers/ScrollLink";
 import "./pagination.css"
 
 const Pagination = (props) => {
-    const {totalCount, currentpage,errorfetch, setCurrentPage} =  props
+    const {totalCount, currentpage,errorfetch, setCurrentPage, setLoading} =  props
 
     const pageSize = 20;
     const siblingCount = 1;
@@ -14,6 +14,12 @@ const Pagination = (props) => {
     
 //   console.log(paginationRange);
     if(totalCount <= 1 || errorfetch) return
+
+    const handleClick = (page) => {
+        setCurrentPage(page)
+        setLoading(true)
+        scrollLink(0)
+    }
  
     return(
         <>
@@ -23,7 +29,7 @@ const Pagination = (props) => {
                    ? <li 
                     key={page}
                     className={page !== currentpage ? 'pagination-numbers' : 'pagination-currentPage'}
-                    onClick={() => (setCurrentPage(page), scrollLink(0))}
+                    onClick={() => handleClick(page)}
 
                     > {page}</li>
                     : <li className="" key={Date.now()*Math.random()*10}>&#8230;</li>

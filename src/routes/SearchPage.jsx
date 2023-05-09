@@ -86,6 +86,7 @@ const SearchPage = () => {
                currentpage={currentpage}
                errorfetch={errorfetch}
                setCurrentPage={setCurrentPage}
+               setLoading={setLoading}
                />
 
                <Article 
@@ -98,6 +99,7 @@ const SearchPage = () => {
                 currentpage={currentpage}
                 errorfetch={errorfetch}
                 setCurrentPage={setCurrentPage}
+                setLoading={setLoading}
                 />
                
             </main>
