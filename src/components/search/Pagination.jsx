@@ -11,6 +11,10 @@ const Pagination = (props) => {
     const paginationRange = usePagination({currentpage, siblingCount, totalPageCount})
     
 //   console.log(paginationRange);
+    const styleCurrentButton = {
+        backgroundColor: '#ccc',
+        color: '#fff'
+    } 
     return(
         <>
             <ul className="pagination" >
@@ -18,8 +22,8 @@ const Pagination = (props) => {
                    page !== DOTS 
                    ? <li 
                     key={page}
-                    className="pagination-numbers"
-                    onClick={() => (setCurrentPage(page), console.log(page))}
+                    className={page !== currentpage ? 'pagination-numbers' : 'pagination-currentPage'}
+                    onClick={() => (setCurrentPage(page))}
 
                     > {page}</li>
                     : <li className="" key={Date.now()*Math.random()*10}>&#8230;</li>

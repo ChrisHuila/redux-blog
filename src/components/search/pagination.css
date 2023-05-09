@@ -16,3 +16,10 @@
     color: #fff;
 }
 
+.pagination-currentPage {
+    background-color: #555;
+    color: #fff;
+    border: 1px solid #ccc ;
+    padding: 4px 8px;
+    cursor: pointer;
+}

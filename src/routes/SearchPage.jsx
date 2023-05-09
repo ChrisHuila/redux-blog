@@ -22,7 +22,7 @@ const SearchPage = () => {
     const [currentpage, setCurrentPage] = useState(1)
     // Custom hook
     const {search, setSearch, error} = useSearch();
-    const {articles, getArticle} = useArticle(search, sort, news)
+    const {articles, getArticle} = useArticle(search, sort, news, currentpage)
  
 
     const handleCheck = e => {
@@ -36,8 +36,8 @@ const SearchPage = () => {
     }
     // only perform the search when getArticle change
     const debaunceGetArticle = useCallback(
-        debounce(search =>{
-            getArticle(search)
+        debounce((search, currentpage) =>{
+            getArticle(search, currentpage)
         },500),
     [getArticle])  
 
@@ -45,12 +45,12 @@ const SearchPage = () => {
     const handleChange = e => {
         const newSearch = e.target.value;
         setSearch(newSearch)
-        debaunceGetArticle(newSearch)
+        debaunceGetArticle(newSearch, currentpage )
     }
     
     const handleSubmit = e => {
         e.preventDefault();
-        getArticle(search)
+        getArticle(search, currentpage)
 
     }
     //TODO enable search for either news or post
