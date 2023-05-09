@@ -90,6 +90,13 @@ const SearchPage = () => {
                <Article 
                articles={articles} 
                />
+
+                <Pagination 
+                totalCount={totalcount}
+                currentpage={currentpage}
+                errorfetch={errorfetch}
+                setCurrentPage={setCurrentPage}
+                />
                
             </main>
         </>
