@@ -1,0 +1,10 @@
+
+.noarticleresult {
+    color: var(--first-color);
+    font-size: var(--h3-font-size);
+    font-weight: 900;
+    font-family: 'Roboto', sans-serif;
+    text-transform: capitalize;
+    text-align: center;
+    margin-bottom: 3rem;
+}

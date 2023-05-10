@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from "react";
 const useSearch = () => {
     const [search, setSearch] = useState('')
     const [ error, setError ] = useState(null)
+    
     // This value is changeable throughout the life cycle of the component
     const isfirtInput = useRef(true);
 

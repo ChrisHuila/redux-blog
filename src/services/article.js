@@ -1,8 +1,10 @@
-const apiKey ='ef68e173335b488999ff04629000ae4d';
 
 export const searchArticle = async({search, currentpage}) => {
+
     if(search === '') return null;
-    const url = `https://newsapi.org/v2/everything?q=${search}&apiKey=${apiKey}&language=es&pageSize=20&page=${currentpage}`;
+    
+    const url = `https://newsapi.org/v2/everything?q=${search}&apiKey=${import.meta.env.VITE_API_KEY}&language=es&pageSize=20&page=${currentpage}`;
+
     try {
         const res = await fetch(url);
         const json = await res.json()
@@ -30,13 +32,16 @@ export const searchArticle = async({search, currentpage}) => {
 }
 
 export const showHeadLines = async () => {
-    const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`;
+
+    const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${import.meta.env.VITE_API_KEY}`;
+
     try {
         const res = await fetch(url);
         const json = await res.json();
 
-        const headlines = json.articles
-        return headlines?.map(headline => ({
+        const headlines = json.articles;
+        
+        const resultHeadlines = headlines?.map(headline => ({
             author: headline.author,
             content: headline.content,
             description: headline.description,
@@ -47,6 +52,8 @@ export const showHeadLines = async () => {
             url: headline.url,
             id: Date.now()*Math.random()*10
         }))
+
+        return[resultHeadlines, res.ok]
     } catch (error) {
         throw new error('Error al cargar titulares')
     }

@@ -8,11 +8,18 @@ const Pagination = (props) => {
 
     const pageSize = 20;
     const siblingCount = 1;
-    const totalPageCount = Math.ceil(totalCount/pageSize);
+
+    // Due to the API "https://newsapi.org/", only 100 results are allowed.    
+
+    let totalPageCount;
+    if(Math.ceil(totalCount/pageSize) < 6){
+        totalPageCount = Math.ceil(totalCount/pageSize);
+    }else{
+        totalPageCount = 5;
+    }
 
     const paginationRange = usePagination({currentpage, siblingCount, totalPageCount})
     
-//   console.log(paginationRange);
     if(totalCount <= 1 || errorfetch) return
 
     const handleClick = (page) => {

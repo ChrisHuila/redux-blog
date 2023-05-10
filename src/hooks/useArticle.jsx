@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { searchArticle, showHeadLines } from "../services/article";
 
-const useArticle = (search, sort, news, currentpage, setLoading) => {
+const useArticle = (search, sort, news, currentpage) => {
     const [articles, setArticles] = useState([])
     const [totalcount, setTotalCount] = useState(1);
     const [errorfetch, setErrorFetch] = useState(false);
+    const [loading, setLoading] = useState(true)
     
     const previousSearch = useRef(search)
     const previousPage = useRef(currentpage);
@@ -30,9 +31,13 @@ const useArticle = (search, sort, news, currentpage, setLoading) => {
     ,[news, currentpage]) 
    
     const getHeadLines = async () => {
+
         if(!firstArticle.current) return
-        const headLines = await showHeadLines()
+
+        const [headLines, ok] = await showHeadLines()
+
         setArticles(headLines)
+        setErrorFetch(!ok);
         setLoading(false)
         firstArticle.current = false
     }
@@ -55,7 +60,7 @@ const useArticle = (search, sort, news, currentpage, setLoading) => {
         getHeadLines()
     }, [])
     
-    return{articles: sortedArticle , errorfetch, getArticle, totalcount}
+    return{articles: sortedArticle , errorfetch, loading,  getArticle, totalcount, setLoading}
 }
 
 export default useArticle;

@@ -5,10 +5,10 @@ import Article from "../components/search/Article";
 import Pagination from "../components/search/Pagination";
 import useArticle from "../hooks/useArticle";
 import useSearch from "../hooks/useSearch";
-import "../../css/searchpage.css";
 
 // Action Redux
 import { showNews, showPost } from "../actions/checkboxAction";
+import ErrorServer from "../components/helpers/ErrorServer";
 
 const SearchPage = () => {
     // access to the state
@@ -18,11 +18,10 @@ const SearchPage = () => {
 
     const [sort , setSort] = useState(false);
     const [currentpage, setCurrentPage] = useState(1)
-    const [loading, setLoading] = useState(true)
     
     // Custom hook
     const {search, setSearch, error} = useSearch();
-    const {articles,totalcount, errorfetch ,getArticle} = useArticle(search, sort, news, currentpage, setLoading)
+    const {articles,totalcount, loading, errorfetch , getArticle, setLoading} = useArticle(search, sort, news, currentpage)
  
 
     const handleCheck = e => {
@@ -60,7 +59,7 @@ const SearchPage = () => {
  
     return ( 
         <>
-            <main className="container">
+            <main className="container-box">
                 <form action="" className="search-form" onSubmit={handleSubmit}>
                     <div className="search-form_container">
                         <div className="search-div_query">
@@ -79,8 +78,9 @@ const SearchPage = () => {
                         </div>
                     </div>
                 </form>
-                {error && <p style={{color: 'red'}}>{error}</p>}
-                {errorfetch && <p style={{color: 'red'}}>There was an error with the server </p>}
+                {error && <p style={{color: 'red', textAlign: 'center'}}>{error}</p>}
+                {errorfetch && <ErrorServer />}
+                
                <Pagination 
                totalCount={totalcount}
                currentpage={currentpage}
@@ -91,7 +91,8 @@ const SearchPage = () => {
 
                <Article 
                articles={articles}
-               loading={loading} 
+               loading={loading}
+               errorfetch={errorfetch} 
                />
 
                 <Pagination 
