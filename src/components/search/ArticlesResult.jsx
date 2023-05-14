@@ -25,7 +25,6 @@ const ArticlesResult = ({articles, loading}) => {
                             alt={article.title}
                             placeholder={<Skeleton variant="rectangular" width="100%" height={300} />}
                             />
-                            {/* <img  src={article.image? article.image :questionMarkImage} alt={article.title} /> */}
                         </a>
                     </div>
                 :   <div className="articles-image-box">
