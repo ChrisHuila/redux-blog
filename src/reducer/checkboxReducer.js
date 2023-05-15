@@ -4,8 +4,8 @@ import {
 } from "../types"
 
 const initialState = {
-    news: true,
-    post: false
+    news: false,
+    post: true
 }
 
 export default function(state= initialState , action){

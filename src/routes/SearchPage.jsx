@@ -12,8 +12,9 @@ import ErrorServer from "../components/helpers/ErrorServer";
 
 const SearchPage = () => {
     // access to the state
-    const post = useSelector(state => state.checkbox.post);
-    const news = useSelector(state => state.checkbox.news);
+    const { post, news } = useSelector(state => state.checkbox);
+    const { firebase } = useSelector(state => state.firebaseReducer);
+    
     const dispatch = useDispatch();
 
     const [sort , setSort] = useState(false);
