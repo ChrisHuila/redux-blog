@@ -6,22 +6,21 @@ const usePosts = () => {
     const { post } = useSelector(state => state.checkbox);
     const { firebase } = useSelector(state => state.firebaseReducer);
 
-    const [ posts, SetPosts] = useState([])
+    const [ posts, setPosts] = useState([])
     const [loading, setLoading] = useState(true);
 
+    const getAllPosts = async () => {
+        const postFirebase = await firebase.getCollet();
+        setPosts(postFirebase)
+        setLoading(false)
+    }
+
     useEffect(() => {
-
-        if(!post) return
-
-        const getPosts = async () => {
-            const postFirebase = await firebase.getCollet();
-            SetPosts(postFirebase)
-            setLoading(false)
-        }
-        getPosts()
+        if(!post)
+        getAllPosts()
     },[post])
 
-    return{posts, loadingPost: loading}
+    return{loadingPost: loading, posts}
 }
 
 export default usePosts;

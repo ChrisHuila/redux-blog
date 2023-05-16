@@ -10,6 +10,7 @@ import useSearch from "../hooks/useSearch";
 import { showNews, showPost } from "../actions/checkboxAction";
 import ErrorServer from "../components/helpers/ErrorServer";
 import usePosts from "../hooks/usePosts";
+import Post from "../components/search/post/Post";
 
 const SearchPage = () => {
     // access to the state
@@ -19,13 +20,12 @@ const SearchPage = () => {
 
     const [sort , setSort] = useState(false);
     const [currentpage, setCurrentPage] = useState(1)
-    
+
     // Custom hook
     const {search, setSearch, error} = useSearch();
     const {articles,totalcount, loading, errorfetch , getArticle, setLoading} = useArticle(search, sort, news, currentpage)
-    const {posts, loadingPost} = usePosts();
- 
-
+    const { loadingPost, posts} = usePosts();
+        
     const handleCheck = e => {
         const {name} = e.target
         if(name === 'post') {
@@ -91,12 +91,18 @@ const SearchPage = () => {
                setLoading={setLoading}
                />
 
-               <Article 
-               articles={articles}
-               loading={loading}
-               errorfetch={errorfetch} 
-               />
-
+                {news 
+                ? <Article 
+                    articles={articles}
+                    loading={loading}
+                    errorfetch={errorfetch} 
+                    />
+                :  <Post 
+                    posts={posts}
+                    loading={loadingPost}
+                    />
+                }
+                
                 <Pagination 
                 totalCount={totalcount}
                 currentpage={currentpage}
