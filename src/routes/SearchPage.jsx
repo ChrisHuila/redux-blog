@@ -9,11 +9,11 @@ import useSearch from "../hooks/useSearch";
 // Action Redux
 import { showNews, showPost } from "../actions/checkboxAction";
 import ErrorServer from "../components/helpers/ErrorServer";
+import usePosts from "../hooks/usePosts";
 
 const SearchPage = () => {
     // access to the state
     const { post, news } = useSelector(state => state.checkbox);
-    const { firebase } = useSelector(state => state.firebaseReducer);
     
     const dispatch = useDispatch();
 
@@ -23,6 +23,7 @@ const SearchPage = () => {
     // Custom hook
     const {search, setSearch, error} = useSearch();
     const {articles,totalcount, loading, errorfetch , getArticle, setLoading} = useArticle(search, sort, news, currentpage)
+    const {posts, loadingPost} = usePosts();
  
 
     const handleCheck = e => {
@@ -57,14 +58,14 @@ const SearchPage = () => {
     const handleSort = e => {
         setSort(!sort)
     }
- 
+
     return ( 
         <>
             <main className="container-box">
                 <form action="" className="search-form" onSubmit={handleSubmit}>
                     <div className="search-form_container">
                         <div className="search-div_query">
-                            <input  type="text" value={search} name="query" onChange={handleChange} className="search-input" placeholder="What are you looking for?" />
+                            <input  type="text" value={search} name="query" onChange={handleChange} className="search-input" placeholder={news ? "What are you looking for?" : "Search Post by tag or specific phrase"} />
                             <button  type="submit" className="search-button"> <i className="bi bi-search"></i></button>
                         </div>
                         <div className="search-div_checkbox">

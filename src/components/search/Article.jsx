@@ -8,10 +8,10 @@ const Article = ({articles, loading, errorfetch}) => {
     return (
         !hasArticle & !loading
             ? <NoArticlesResult />
-            : (<ArticlesResult 
+            : <ArticlesResult 
             articles={articles}
             loading={loading}
-            />)
+            />
       )
 }
  
