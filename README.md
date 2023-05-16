@@ -13,5 +13,8 @@ tipo: entradas -articulo
 -cita //opcional
 -fotos 
 
-render que muestre el numero - las 6 primeras paginas - cuando se haga la busqueda
-logica que vaya aumentando el numero
+comentar codigo
+agregar una carpeta de articulos
+organizar los post 
+utilizar funciones redux
+corregir nombres

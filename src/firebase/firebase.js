@@ -38,14 +38,16 @@ class Firebase {
           });
         return post;
     }
-    async getColletBy(tag){
+    async getColletBy(category){
+        const post = [];
         const postRef = collection(this.db, "post");
-        const q = query(postRef, where("tag", "array-contains", tag));
+        const q = query(postRef, where("category", "==", category));
         try {
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-            console.log(doc.id, " => ", doc.data());
-        });   
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach((doc) => {
+                post.push(doc.data());
+            });
+            return post; 
         } catch (error) {
            console.log(error + "desde obtener"); 
         }

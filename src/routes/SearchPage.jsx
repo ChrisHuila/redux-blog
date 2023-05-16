@@ -1,16 +1,17 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";    
 import debounce from "just-debounce-it";
 import Article from "../components/search/Article";
 import Pagination from "../components/search/Pagination";
+import ErrorServer from "../components/helpers/ErrorServer";
+import Post from "../components/search/post/Post";
 import useArticle from "../hooks/useArticle";
 import useSearch from "../hooks/useSearch";
+import usePosts from "../hooks/usePosts";
 
 // Action Redux
 import { showNews, showPost } from "../actions/checkboxAction";
-import ErrorServer from "../components/helpers/ErrorServer";
-import usePosts from "../hooks/usePosts";
-import Post from "../components/search/post/Post";
+
 
 const SearchPage = () => {
     // access to the state
@@ -24,7 +25,7 @@ const SearchPage = () => {
     // Custom hook
     const {search, setSearch, error} = useSearch();
     const {articles,totalcount, loading, errorfetch , getArticle, setLoading} = useArticle(search, sort, news, currentpage)
-    const { loadingPost, posts} = usePosts();
+    const { loadingPost, posts, getPosts} = usePosts({search , sort});
         
     const handleCheck = e => {
         const {name} = e.target
@@ -39,8 +40,9 @@ const SearchPage = () => {
     const debaunceGetArticle = useCallback(
         debounce((search, currentpage) =>{
             getArticle(search, currentpage)
+            getPosts(search)
         },500),
-    [getArticle])  
+    [getArticle, getPosts])  
 
     // perform the search
     const handleChange = e => {
@@ -53,6 +55,7 @@ const SearchPage = () => {
     const handleSubmit = e => {
         e.preventDefault();
         getArticle(search, currentpage)
+        getPosts(search)
     }
     //TODO enable search for either news or post
     const handleSort = e => {

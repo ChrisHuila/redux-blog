@@ -48,7 +48,8 @@ const useArticle = (search, sort, news, currentpage) => {
         ? [...articles].sort((a, b) => a.title.localeCompare(b.title))
         :articles
     },[sort, articles ])
-
+    
+    // Every time a change in pagination occurs, fire that.
     useEffect(() => {
         if(search !== ''){
             getArticle(search, currentpage);
