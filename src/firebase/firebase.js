@@ -28,16 +28,16 @@ class Firebase {
             console.log(error, 'desde agregar post');
         }
     }
-    getCollet(){
+    async getCollet(){
+
         const post = [];
-        const q = query(collection(this.db, "post"));
-        onSnapshot(q, (querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                post.push(doc.data());
-            });
-          });
+        const querySnapshot = await getDocs(collection(this.db, "post"));
+        querySnapshot.forEach((doc) => {
+            post.push(doc.data());
+        });
         return post;
     }
+    
     async getColletBy(category){
         const post = [];
         const postRef = collection(this.db, "post");

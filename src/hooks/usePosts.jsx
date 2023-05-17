@@ -1,15 +1,17 @@
-import { useEffect, useState, useMemo, useRef, useCallback } from "react";
-import { useSelector } from "react-redux";
+import {  useMemo, useRef, useCallback, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
+import { getPostsAction, loadPostsAction, sortedpostsAction } from "../actions/postAction";
 
 const usePosts = ({sort, search}) => {
-    const { post } = useSelector(state => state.checkbox);
-    const { firebase } = useSelector(state => state.postReducer);
-
-    const [ posts, setPosts] = useState([])
-    const [loading, setLoading] = useState(true);
-    
+    const dispatch = useDispatch()
     const previousSearch = useRef(search)
+
+    const { post } = useSelector(state => state.checkbox);
+    const { firebase, posts } = useSelector(state => state.postReducer);
+    
+    const addPosts =  firePosts =>  dispatch(getPostsAction(firePosts))
+    const postsSorted = (sortedposts) => dispatch(sortedpostsAction(sortedposts))
 
     const getPosts = useCallback( async (search) => {
 
@@ -20,18 +22,20 @@ const usePosts = ({sort, search}) => {
             if(!post) return
             previousSearch.current = search;
 
+            // retorna cargando a true
+            loadPostsAction()
             const firePosts = await firebase.getColletBy(search);
-
-            setPosts(firePosts)
-            setLoading(false)
+            // agrega los posts
+            addPosts(firePosts)
         }
     ,[post]) 
 
-    const getAllPosts = async () => {
+    const getAllPosts =  async () => {
+        loadPostsAction()
         const postFirebase = await firebase.getCollet();
-        setPosts(postFirebase)
-        setLoading(false)
+        addPosts(postFirebase)
     }
+
     // sort by title
     const sortedposts = useMemo(() => {
     return sort 
@@ -40,11 +44,10 @@ const usePosts = ({sort, search}) => {
     },[sort, posts ])
 
     useEffect(() => {
-        if(!post)
-        getAllPosts()
-    },[post])
+        postsSorted(sortedposts)
+    }, [sortedposts])
 
-    return{loadingPost: loading, posts: sortedposts, getPosts}
+    return{getPosts, getAllPosts}
 }
 
 export default usePosts;

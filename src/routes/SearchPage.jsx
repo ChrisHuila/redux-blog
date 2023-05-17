@@ -25,13 +25,14 @@ const SearchPage = () => {
     // Custom hook
     const {search, setSearch, error} = useSearch();
     const {articles,totalcount, loading, errorfetch , getArticle, setLoading} = useArticle(search, sort, news, currentpage)
-    const { loadingPost, posts, getPosts} = usePosts({search , sort});
+    const { getPosts, getAllPosts} = usePosts({search , sort});
         
     const handleCheck = e => {
-        setSearch('')
+        setSearch("")
         const {name} = e.target
         if(name === 'post') {
             dispatch(showPost())
+            getAllPosts()
         }else {
             dispatch(showNews()) 
         }
@@ -48,9 +49,11 @@ const SearchPage = () => {
     // perform the search
     const handleChange = e => {
         const newSearch = e.target.value;
-        setSearch(newSearch)
+        const starSearch = newSearch.trim();
+
+        setSearch(starSearch)
         setCurrentPage(1)
-        debaunceGetArticle(newSearch, currentpage )
+        debaunceGetArticle(starSearch, currentpage )
     }
     
     const handleSubmit = e => {
@@ -87,35 +90,35 @@ const SearchPage = () => {
                 {error && <p style={{color: 'red', textAlign: 'center'}}>{error}</p>}
                 {errorfetch && <ErrorServer />}
                 
-               <Pagination
-               search={search} 
-               totalCount={totalcount}
-               currentpage={currentpage}
-               errorfetch={errorfetch}
-               setCurrentPage={setCurrentPage}
-               setLoading={setLoading}
-               />
+                <Pagination
+                    search={search}
+                    totalCount={totalcount}
+                    currentpage={currentpage}
+                    errorfetch={errorfetch}
+                    setCurrentPage={setCurrentPage}
+                    setLoading={setLoading}
+                />
 
+            
                 {news 
                 ? <Article 
                     articles={articles}
                     loading={loading}
                     errorfetch={errorfetch} 
                     />
-                :  <Post 
-                    posts={posts}
-                    loading={loadingPost}
-                    />
+                :  <Post />
                 }
+
                 
                 <Pagination
-                search={search} 
-                totalCount={totalcount}
-                currentpage={currentpage}
-                errorfetch={errorfetch}
-                setCurrentPage={setCurrentPage}
-                setLoading={setLoading}
+                    search={search}
+                    totalCount={totalcount}
+                    currentpage={currentpage}
+                    errorfetch={errorfetch}
+                    setCurrentPage={setCurrentPage}
+                    setLoading={setLoading}
                 />
+
                
             </main>
         </>
