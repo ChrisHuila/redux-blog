@@ -23,7 +23,7 @@ const SearchPage = () => {
     const [currentpage, setCurrentPage] = useState(1)
 
     // Custom hook
-    const {search, setSearch, error} = useSearch();
+    const {search, setSearch, error} = useSearch({post, news});
     const {articles,totalcount, loading, errorfetch , getArticle, setLoading} = useArticle(search, sort, news, currentpage)
     const { getPosts, getAllPosts} = usePosts({search , sort});
         
@@ -95,6 +95,7 @@ const SearchPage = () => {
                     totalCount={totalcount}
                     currentpage={currentpage}
                     errorfetch={errorfetch}
+                    news={news}
                     setCurrentPage={setCurrentPage}
                     setLoading={setLoading}
                 />
@@ -115,6 +116,7 @@ const SearchPage = () => {
                     totalCount={totalcount}
                     currentpage={currentpage}
                     errorfetch={errorfetch}
+                    news={news}
                     setCurrentPage={setCurrentPage}
                     setLoading={setLoading}
                 />

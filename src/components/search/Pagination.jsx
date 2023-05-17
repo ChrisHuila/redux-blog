@@ -5,7 +5,7 @@ import scrollLink from "../helpers/ScrollLink";
 import "./pagination.css"
 
 const Pagination = (props) => {
-    const { search, totalCount, currentpage, errorfetch, setCurrentPage, setLoading} =  props
+    const { search, totalCount, currentpage, errorfetch, news, setCurrentPage, setLoading} =  props
 
     const pageSize = 20;
     const siblingCount = 1;
@@ -22,7 +22,7 @@ const Pagination = (props) => {
     // Custom hook
     const paginationRange = usePagination({currentpage, siblingCount, totalPageCount})
     
-    if(totalCount <= 1 || errorfetch || search === "") return 
+    if(totalCount <= 1 || errorfetch || search === "" || !news) return 
 
     const handleClick = (page) => {
         setCurrentPage(page)
