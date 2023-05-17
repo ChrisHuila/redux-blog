@@ -1,6 +1,9 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { searchArticle, showHeadLines } from "../services/article";
 
+import { useDispatch, useSelector } from "react-redux";
+import { loadArticlesAction, getArticlesAction } from "../actions/articleAction";
+
 const useArticle = (search, sort, news, currentpage) => {
     const [articles, setArticles] = useState([])
     const [totalcount, setTotalCount] = useState(1);
@@ -10,6 +13,11 @@ const useArticle = (search, sort, news, currentpage) => {
     const previousSearch = useRef(search)
     const previousPage = useRef(currentpage);
     const firstArticle = useRef(true)
+
+    const dispatch = useDispatch()
+
+    const loadArticles = () => dispatch(loadArticlesAction())
+    const addArticles = (articles) => dispatch(getArticlesAction(articles))
 
     const getArticle = useCallback( async (search, currentpage) => {
 
@@ -21,8 +29,11 @@ const useArticle = (search, sort, news, currentpage) => {
             previousSearch.current = search;
             previousPage.current = currentpage;
 
+            // Estable cargando como true
+            loadArticles()
             const [totalCount, article, ok] = await searchArticle({search, currentpage});
-            
+            addArticles(article)
+
             setTotalCount(totalCount)
             setArticles(article)
             setErrorFetch(!ok);
@@ -34,8 +45,10 @@ const useArticle = (search, sort, news, currentpage) => {
 
         if(!firstArticle.current) return
 
+        loadArticles()
         const [headLines, ok] = await showHeadLines()
 
+        addArticles(headLines)
         setArticles(headLines)
         setErrorFetch(!ok);
         setLoading(false)
