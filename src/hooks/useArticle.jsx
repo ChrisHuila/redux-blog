@@ -14,7 +14,7 @@ const useArticle = (search, sort, news, currentpage) => {
     const getArticle = useCallback( async (search, currentpage) => {
 
             //if the current search query is the same as the previous one return  
-            if(previousSearch.current === search && previousPage.current === currentpage) return
+            if(previousSearch.current === search && previousPage.current === currentpage && search === " ") return
 
             // Enable only when news is checked
             if(!news) return
@@ -48,7 +48,7 @@ const useArticle = (search, sort, news, currentpage) => {
         ? [...articles].sort((a, b) => a.title.localeCompare(b.title))
         :articles
     },[sort, articles ])
-    
+
     // Every time a change in pagination occurs, fire that.
     useEffect(() => {
         if(search !== ''){

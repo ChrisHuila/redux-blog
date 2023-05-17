@@ -28,6 +28,7 @@ const SearchPage = () => {
     const { loadingPost, posts, getPosts} = usePosts({search , sort});
         
     const handleCheck = e => {
+        setSearch('')
         const {name} = e.target
         if(name === 'post') {
             dispatch(showPost())
@@ -58,7 +59,7 @@ const SearchPage = () => {
         getPosts(search)
     }
     //TODO enable search for either news or post
-    const handleSort = e => {
+    const handleSort = () => {
         setSort(!sort)
     }
 
@@ -86,7 +87,8 @@ const SearchPage = () => {
                 {error && <p style={{color: 'red', textAlign: 'center'}}>{error}</p>}
                 {errorfetch && <ErrorServer />}
                 
-               <Pagination 
+               <Pagination
+               search={search} 
                totalCount={totalcount}
                currentpage={currentpage}
                errorfetch={errorfetch}
@@ -106,7 +108,8 @@ const SearchPage = () => {
                     />
                 }
                 
-                <Pagination 
+                <Pagination
+                search={search} 
                 totalCount={totalcount}
                 currentpage={currentpage}
                 errorfetch={errorfetch}

@@ -17,17 +17,17 @@ class Firebase {
         this.app = initializeApp(firebaseConfig);
         this.db = getFirestore(this.app);
     }
-    // Agrega la collection de post
-    // async collect(post){
-    //     try {
-    //         const postRef = doc(collection(this.db, 'post'));
-    //         await setDoc(postRef, {
-    //             id: postRef.id, 
-    //             ...post});
-    //     } catch (error) {
-    //         console.log(error, 'desde agregar post');
-    //     }
-    // }
+    // add to the collection´s post
+    async collect(post){
+        try {
+            const postRef = doc(collection(this.db, 'post'));
+            await setDoc(postRef, {
+                id: postRef.id, 
+                ...post});
+        } catch (error) {
+            console.log(error, 'desde agregar post');
+        }
+    }
     getCollet(){
         const post = [];
         const q = query(collection(this.db, "post"));

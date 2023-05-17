@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 const usePosts = ({sort, search}) => {
     const { post } = useSelector(state => state.checkbox);
-    const { firebase } = useSelector(state => state.firebaseReducer);
+    const { firebase } = useSelector(state => state.postReducer);
 
     const [ posts, setPosts] = useState([])
     const [loading, setLoading] = useState(true);
@@ -14,15 +14,14 @@ const usePosts = ({sort, search}) => {
     const getPosts = useCallback( async (search) => {
 
             //if the current search query is the same as the previous one return  
-            if(previousSearch.current === search ) return
+            if(previousSearch.current === search && search === " ") return
 
             // Enable only when news is checked
             if(!post) return
             previousSearch.current = search;
 
-            
             const firePosts = await firebase.getColletBy(search);
-            console.log(firePosts);
+
             setPosts(firePosts)
             setLoading(false)
         }
