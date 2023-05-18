@@ -1,7 +1,6 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Skeleton from "@mui/material/Skeleton";
 
-import "./postresult.css";
 const PostResult = ({posts, loading}) => {
 
      // Display the current date
@@ -28,8 +27,11 @@ const PostResult = ({posts, loading}) => {
                 }
                 {post 
                 ?   <>
-                        <p className="article-date">{post.author}</p>
-                        <p className="article-date">{getTime(post.date)}</p>
+                        
+                        <div className="article-source_div">
+                            <p className="article-source">{post.tagline}</p>
+                            <p className="article-date">{getTime(post.date)}</p>
+                        </div>
                         <p className="article-headline">{post.tittle}</p>
                     </>
                 :  

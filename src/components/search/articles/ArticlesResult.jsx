@@ -32,8 +32,11 @@ const ArticlesResult = ({articles, loading}) => {
                     </div>
                 }
                 {article 
-                ?   <>
-                        <p className="article-date">{getTime(article.publishedAt)}</p>
+                ?   <>  <div className="article-source_div">
+                            <p className="article-source">{article.source.name}</p>
+                            <p className="article-date">{getTime(article.publishedAt)}</p>
+                        </div>
+
                         <p className="article-headline">{article.title}</p>
                     </>
                 :  

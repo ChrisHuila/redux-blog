@@ -31,11 +31,23 @@
 .article img:hover{
     transform: scale(1.05);
 }
+.article-source_div{
+    display: grid;
+    grid-template-columns: 1fr 100px;
+}
+.article-source{
+    font-size: var(--normal-font-size);
+    color: #dc3545;
+    margin: 0;
+    margin-top: .5rem;
+    font-weight: 700;
+}
 .article-date{
     font-size: var(--small-font-size);
     font-weight: 300;
     margin: 0;
     margin-top: .5rem;
+    text-align: center;
 }
 .article-headline{
     font-size: var(--normal-font-size);
