@@ -17,6 +17,7 @@ const SearchPage = () => {
     // access to the state
     const { post, news } = useSelector(state => state.checkbox);
     
+    
     const dispatch = useDispatch();
 
     const [sort , setSort] = useState(false);
@@ -103,8 +104,8 @@ const SearchPage = () => {
             
                 {news 
                 ? <Article 
-                    articles={articles}
-                    loading={loading}
+                    // articles={articles}
+                    // loading={loading}
                     errorfetch={errorfetch} 
                     />
                 :  <Post />

@@ -1,12 +1,14 @@
 import {
     LOAD_ARTICLES, 
     GET_ARTICLES_SUCCES,
+    ARTICLES_TOTAL_COUNTS,
     SORTED_ARTICLES
 } from "../types";
 
 const initialState = {
     articles: [],
     loading: true,
+    totalCount: 1,
 }
 
 export default function(state= initialState, action){
@@ -21,6 +23,11 @@ export default function(state= initialState, action){
                 ...state,
                 loading: false,
                 articles:action.payload
+            }
+        case ARTICLES_TOTAL_COUNTS:
+            return{
+                ...state,
+                totalCount: action.payload
             }
         default:
             return state;

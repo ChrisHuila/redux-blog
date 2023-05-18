@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { searchArticle, showHeadLines } from "../services/article";
 
-import { useDispatch, useSelector } from "react-redux";
-import { loadArticlesAction, getArticlesAction } from "../actions/articleAction";
+import { useDispatch} from "react-redux";
+import { loadArticlesAction, getArticlesAction, getTotalCountAction } from "../actions/articleAction";
 
 const useArticle = (search, sort, news, currentpage) => {
     const [articles, setArticles] = useState([])
@@ -33,6 +33,7 @@ const useArticle = (search, sort, news, currentpage) => {
             loadArticles()
             const [totalCount, article, ok] = await searchArticle({search, currentpage});
             addArticles(article)
+            dispatch(getTotalCountAction(totalCount))
 
             setTotalCount(totalCount)
             setArticles(article)
