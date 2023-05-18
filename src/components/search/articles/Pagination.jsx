@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import { usePagination, DOTS } from "../../hooks/usePagination";
-import scrollLink from "../helpers/ScrollLink";
+import { usePagination, DOTS } from "../../../hooks/usePagination";
+import scrollLink from "../../helpers/ScrollLink";
 
 import "./pagination.css"
 

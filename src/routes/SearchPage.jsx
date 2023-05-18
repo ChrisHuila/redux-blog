@@ -1,13 +1,13 @@
 import { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";    
 import debounce from "just-debounce-it";
-import Article from "../components/search/Article";
-import Pagination from "../components/search/Pagination";
 import ErrorServer from "../components/helpers/ErrorServer";
 import Post from "../components/search/post/Post";
 import useArticle from "../hooks/useArticle";
 import useSearch from "../hooks/useSearch";
 import usePosts from "../hooks/usePosts";
+import Article from "../components/search/articles/Article";
+import Pagination from "../components/search/articles/Pagination";
 
 // Action Redux
 import { showNews, showPost } from "../actions/checkboxAction";

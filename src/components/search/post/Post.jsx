@@ -1,4 +1,4 @@
-import NoArticlesResult from "../NoArticlesResult";
+import NoArticlesResult from "../articles/NoArticlesResult";
 import PostResult from "./PostResult";
 
 import { useSelector } from "react-redux";

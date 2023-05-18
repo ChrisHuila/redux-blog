@@ -1,7 +1,7 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Skeleton from "@mui/material/Skeleton";
 
-import "../article.css";
+// import "../article.css";
 const PostResult = ({posts, loading}) => {
     return (
         <ul className="articles">

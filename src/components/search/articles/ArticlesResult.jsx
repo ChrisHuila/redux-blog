@@ -1,4 +1,4 @@
-import questionMarkImage from "../../assets/img/question-mark.jpg";
+import questionMarkImage from "../../../assets/img/question-mark.jpg";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Skeleton from "@mui/material/Skeleton";
 
