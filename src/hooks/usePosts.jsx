@@ -41,7 +41,7 @@ const usePosts = ({sort, search}) => {
     // sort by title
     const sortedposts = useMemo(() => {
     return sort 
-    ? [...posts].sort((a, b) => a.title.localeCompare(b.title))
+    ? [...posts].sort((a, b) => a.tittle.localeCompare(b.tittle))
     :posts
     },[sort, posts ])
 

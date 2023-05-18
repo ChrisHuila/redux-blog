@@ -1,7 +1,7 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Skeleton from "@mui/material/Skeleton";
-import postfirebase from "../../../mock/postUpdate.json"
-// import "../article.css";
+
+import "./postresult.css";
 const PostResult = ({posts, loading}) => {
 
      // Display the current date
