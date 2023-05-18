@@ -12,12 +12,9 @@ import usePosts from "../hooks/usePosts";
 // Action Redux
 import { showNews, showPost } from "../actions/checkboxAction";
 
-
 const SearchPage = () => {
     // access to the state
     const { post, news } = useSelector(state => state.checkbox);
-    
-    
     const dispatch = useDispatch();
 
     const [sort , setSort] = useState(false);
@@ -25,7 +22,7 @@ const SearchPage = () => {
 
     // Custom hook
     const {search, setSearch, error} = useSearch({post, news});
-    const {articles,totalcount, loading, errorfetch , getArticle, setLoading} = useArticle(search, sort, news, currentpage)
+    const { errorfetch , getArticle} = useArticle(search, sort, news, currentpage)
     const { getPosts, getAllPosts} = usePosts({search , sort});
         
     const handleCheck = e => {
@@ -93,33 +90,23 @@ const SearchPage = () => {
                 
                 <Pagination
                     search={search}
-                    totalCount={totalcount}
                     currentpage={currentpage}
                     errorfetch={errorfetch}
-                    news={news}
                     setCurrentPage={setCurrentPage}
-                    setLoading={setLoading}
                 />
 
             
                 {news 
-                ? <Article 
-                    // articles={articles}
-                    // loading={loading}
-                    errorfetch={errorfetch} 
-                    />
+                ? <Article errorfetch={errorfetch} />
                 :  <Post />
                 }
 
                 
                 <Pagination
                     search={search}
-                    totalCount={totalcount}
                     currentpage={currentpage}
                     errorfetch={errorfetch}
-                    news={news}
                     setCurrentPage={setCurrentPage}
-                    setLoading={setLoading}
                 />
 
                

@@ -4,8 +4,9 @@ import scrollLink from "../helpers/ScrollLink";
 
 import "./pagination.css"
 
-const Pagination = (props) => {
-    const { search, totalCount, currentpage, errorfetch, news, setCurrentPage, setLoading} =  props
+const Pagination = ({ search,  currentpage, errorfetch,  setCurrentPage }) => {
+    const {totalCount} = useSelector(state => state.articlesReducer)
+    const {news} = useSelector(state => state.checkbox)
 
     const pageSize = 20;
     const siblingCount = 1;
@@ -26,7 +27,6 @@ const Pagination = (props) => {
 
     const handleClick = (page) => {
         setCurrentPage(page)
-        setLoading(true)
         scrollLink(0)
     }
  

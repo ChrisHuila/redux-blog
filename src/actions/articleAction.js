@@ -34,3 +34,13 @@ const getTotalCount = (count) => ({
     type: ARTICLES_TOTAL_COUNTS,
     payload: count
 })
+
+export function sortedArticlesAction(posts){
+    return (dispatch) => {
+        dispatch(sortedArticles(posts))
+    }
+}
+const sortedArticles = articles => ({
+    type:SORTED_ARTICLES,
+    payload: articles
+})

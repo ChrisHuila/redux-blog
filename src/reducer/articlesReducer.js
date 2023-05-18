@@ -9,6 +9,7 @@ const initialState = {
     articles: [],
     loading: true,
     totalCount: 1,
+    sortedarticles: []
 }
 
 export default function(state= initialState, action){
@@ -28,6 +29,11 @@ export default function(state= initialState, action){
             return{
                 ...state,
                 totalCount: action.payload
+            }
+        case SORTED_ARTICLES:
+            return{
+                ...state,
+                sortedarticles: action.payload 
             }
         default:
             return state;

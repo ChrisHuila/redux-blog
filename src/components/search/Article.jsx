@@ -4,7 +4,7 @@ import NoArticlesResult from "./NoArticlesResult"
 import { useSelector } from "react-redux";
 
 const Article = ({ errorfetch}) => {
-    const { articles, loading } = useSelector(state => state.articlesReducer);
+    const { sortedarticles: articles, loading } = useSelector(state => state.articlesReducer);
     
     const hasArticle = articles?.length > 0;
     if(errorfetch) return null; 

@@ -1,20 +1,19 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { searchArticle, showHeadLines } from "../services/article";
 
-import { useDispatch} from "react-redux";
-import { loadArticlesAction, getArticlesAction, getTotalCountAction } from "../actions/articleAction";
+import { useDispatch, useSelector} from "react-redux";
+import { loadArticlesAction, getArticlesAction, getTotalCountAction, sortedArticlesAction } from "../actions/articleAction";
 
 const useArticle = (search, sort, news, currentpage) => {
-    const [articles, setArticles] = useState([])
-    const [totalcount, setTotalCount] = useState(1);
-    const [errorfetch, setErrorFetch] = useState(false);
-    const [loading, setLoading] = useState(true)
     
     const previousSearch = useRef(search)
     const previousPage = useRef(currentpage);
     const firstArticle = useRef(true)
-
+    
     const dispatch = useDispatch()
+    
+    const [errorfetch, setErrorFetch] = useState(false);
+    const {articles} = useSelector(state => state.articlesReducer)
 
     const loadArticles = () => dispatch(loadArticlesAction())
     const addArticles = (articles) => dispatch(getArticlesAction(articles))
@@ -29,16 +28,13 @@ const useArticle = (search, sort, news, currentpage) => {
             previousSearch.current = search;
             previousPage.current = currentpage;
 
-            // Estable cargando como true
+            // set loading as true
             loadArticles()
             const [totalCount, article, ok] = await searchArticle({search, currentpage});
             addArticles(article)
+            // Set total counts
             dispatch(getTotalCountAction(totalCount))
-
-            setTotalCount(totalCount)
-            setArticles(article)
             setErrorFetch(!ok);
-            setLoading(false)
         }
     ,[news, currentpage]) 
    
@@ -50,9 +46,7 @@ const useArticle = (search, sort, news, currentpage) => {
         const [headLines, ok] = await showHeadLines()
 
         addArticles(headLines)
-        setArticles(headLines)
         setErrorFetch(!ok);
-        setLoading(false)
         firstArticle.current = false
     }
 
@@ -67,15 +61,18 @@ const useArticle = (search, sort, news, currentpage) => {
     useEffect(() => {
         if(search !== ''){
             getArticle(search, currentpage);
+            return
         }
+        // show the headlines after the page has loaded
+        getHeadLines()
     },[currentpage])
 
-    // show the headlines after the page has loaded
     useEffect(() => {
-        getHeadLines()
-    }, [])
+        // Enable the sort
+        dispatch(sortedArticlesAction(sortedArticle))
+    }, [sortedArticle])
     
-    return{articles: sortedArticle , errorfetch, loading,  getArticle, totalcount, setLoading}
+    return{ errorfetch,  getArticle}
 }
 
 export default useArticle;

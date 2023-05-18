@@ -22,10 +22,12 @@ const usePosts = ({sort, search}) => {
             if(!post) return
             previousSearch.current = search;
 
-            // retorna cargando a true
+            // set the loading as true
             loadPostsAction()
+
             const firePosts = await firebase.getColletBy(search);
-            // agrega los posts
+
+            // add the posts
             addPosts(firePosts)
         }
     ,[post]) 
@@ -44,6 +46,7 @@ const usePosts = ({sort, search}) => {
     },[sort, posts ])
 
     useEffect(() => {
+        // Enable sort
         postsSorted(sortedposts)
     }, [sortedposts])
 
