@@ -8,7 +8,6 @@ import useSearch from "../hooks/useSearch";
 import usePosts from "../hooks/usePosts";
 import Article from "../components/search/articles/Article";
 import Pagination from "../components/search/articles/Pagination";
-import postFire from "../mock/postUpdate.json";
 
 // Action Redux
 import { showNews, showPost } from "../actions/checkboxAction";
@@ -64,10 +63,7 @@ const SearchPage = () => {
     const handleSort = () => {
         setSort(!sort)
     } 
-    // const {firebase} = useSelector(state => state.postReducer)
-    // const handleCollect = () => {
-    //     postFire.forEach(post => firebase.collect(post))
-    // }
+ 
     return ( 
         <>
             <main className="container-box">
