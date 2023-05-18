@@ -8,8 +8,8 @@ import {
     query,
     where,
     getDocs, 
-    onSnapshot,
     orderBy,
+    limit
  } from "firebase/firestore";
 
 class Firebase {
@@ -20,7 +20,7 @@ class Firebase {
     // add to the collection´s post
     async collect(post){
         try {
-            const postRef = doc(collection(this.db, 'post'));
+            const postRef = doc(collection(this.db, 'entries'));
             await setDoc(postRef, {
                 id: postRef.id, 
                 ...post});
@@ -31,17 +31,18 @@ class Firebase {
     async getCollet(){
 
         const post = [];
-        const querySnapshot = await getDocs(collection(this.db, "post"));
+        const q = query(collection(this.db, "entries"), orderBy("date", "desc"),limit(20));
+        const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
             post.push(doc.data());
         });
         return post;
     }
     
-    async getColletBy(category){
+    async getColletBy(search){
         const post = [];
-        const postRef = collection(this.db, "post");
-        const q = query(postRef, where("category", "==", category));
+        const postRef = collection(this.db, "entries");
+        const q = query(postRef, where("taggs", "array-contains", search));
         try {
             const querySnapshot = await getDocs(q);
             querySnapshot.forEach((doc) => {
@@ -51,7 +52,6 @@ class Firebase {
         } catch (error) {
            console.log(error + "desde obtener"); 
         }
-        
     }
 }
 

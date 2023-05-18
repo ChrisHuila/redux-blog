@@ -1,19 +1,24 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Skeleton from "@mui/material/Skeleton";
-
+import postfirebase from "../../../mock/postUpdate.json"
 // import "../article.css";
 const PostResult = ({posts, loading}) => {
+
+     // Display the current date
+     const getTime = (time) => {
+        return new Date(time).toLocaleDateString()
+    }
     return (
         <ul className="articles">
         {(loading ? Array.from(new Array(8)) : posts)
-        .map((article, i) => (
+        .map((post, i) => (
             <li className="article" key={i}>
-                {article 
+                {post 
                 ?   <div className="articles-image-box">
                         <LazyLoadImage 
-                            src={article.image}
+                            src={post.image_one}
                             width={'100%'} height={'100%'}
-                            alt={article.title}
+                            alt={post.tittle}
                             placeholder={<Skeleton variant="rectangular" width="100%" height={300} />}
                             />
                     </div>
@@ -21,10 +26,11 @@ const PostResult = ({posts, loading}) => {
                         <Skeleton variant="rectangular" width="100%" height={300} />
                     </div>
                 }
-                {article 
+                {post 
                 ?   <>
-                        <p className="article-date">{article.author}</p>
-                        <p className="article-headline">{article.title}</p>
+                        <p className="article-date">{post.author}</p>
+                        <p className="article-date">{getTime(post.date)}</p>
+                        <p className="article-headline">{post.tittle}</p>
                     </>
                 :  
                     <>

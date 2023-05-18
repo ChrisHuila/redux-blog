@@ -8,6 +8,7 @@ import useSearch from "../hooks/useSearch";
 import usePosts from "../hooks/usePosts";
 import Article from "../components/search/articles/Article";
 import Pagination from "../components/search/articles/Pagination";
+import postFire from "../mock/postUpdate.json";
 
 // Action Redux
 import { showNews, showPost } from "../actions/checkboxAction";
@@ -62,8 +63,11 @@ const SearchPage = () => {
     //TODO enable search for either news or post
     const handleSort = () => {
         setSort(!sort)
-    }
-
+    } 
+    // const {firebase} = useSelector(state => state.postReducer)
+    // const handleCollect = () => {
+    //     postFire.forEach(post => firebase.collect(post))
+    // }
     return ( 
         <>
             <main className="container-box">
@@ -83,6 +87,7 @@ const SearchPage = () => {
                             <input type="checkbox" name="sort" onChange={handleSort} checked={sort} id="sort"/>
                             <label htmlFor="sort">Sort by name</label>
                         </div>
+                        {/* <button type="button" onClick={handleCollect}>collect</button> */}
                     </div>
                 </form>
                 {error && <p style={{color: 'red', textAlign: 'center'}}>{error}</p>}
@@ -95,12 +100,10 @@ const SearchPage = () => {
                     setCurrentPage={setCurrentPage}
                 />
 
-            
                 {news 
                 ? <Article errorfetch={errorfetch} />
                 :  <Post />
                 }
-
                 
                 <Pagination
                     search={search}
