@@ -23,7 +23,7 @@ const usePosts = ({sort, search}) => {
             previousSearch.current = search;
 
             // set the loading as true
-            loadPostsAction()
+            dispatch(loadPostsAction())
 
             const firePosts = await firebase.getColletBy(search);
 
@@ -33,7 +33,8 @@ const usePosts = ({sort, search}) => {
     ,[post]) 
 
     const getAllPosts =  async () => {
-        loadPostsAction()
+        dispatch(loadPostsAction())
+        
         const postFirebase = await firebase.getCollet();
         addPosts(postFirebase)
     }

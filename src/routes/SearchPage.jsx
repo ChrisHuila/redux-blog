@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";    
 import debounce from "just-debounce-it";
 import ErrorServer from "../components/helpers/ErrorServer";
@@ -59,7 +59,7 @@ const SearchPage = () => {
         getArticle(search, currentpage)
         getPosts(search)
     }
-    //TODO enable search for either news or post
+    // enable search for either news or post
     const handleSort = () => {
         setSort(!sort)
     } 

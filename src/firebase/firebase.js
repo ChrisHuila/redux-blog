@@ -9,7 +9,9 @@ import {
     where,
     getDocs, 
     orderBy,
-    limit
+    limit,
+    updateDoc,
+    increment  
  } from "firebase/firestore";
 
 class Firebase {
@@ -52,6 +54,21 @@ class Firebase {
         } catch (error) {
            console.log(error + "desde obtener"); 
         }
+    }
+
+    async updateViews(id){
+      try {
+
+        const postRef = doc(this.db, "entries", id);
+        
+        await updateDoc(postRef, {
+            views: increment(1)
+        });
+        console.log('exito');
+
+      } catch (error) {
+        console.log('error desde views', error);
+      }
     }
 }
 

@@ -9,3 +9,6 @@ export const SORTED_ARTICLES = "SORTED_ARTICLES";
 export const LOAD_POSTS = "LOAD_POSTS";
 export const GET_POST_SUCCES = "GET_POST_SUCCES";
 export const SORTED_POSTS = "SORTED_POSTS";
+
+export const SET_VIEWER = "SET_VIEWER";
+export const GET_ID_POST = "GET_ID_POST";

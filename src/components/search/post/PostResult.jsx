@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Skeleton from "@mui/material/Skeleton";
 
@@ -14,12 +15,14 @@ const PostResult = ({posts, loading}) => {
             <li className="article" key={i}>
                 {post 
                 ?   <div className="articles-image-box">
-                        <LazyLoadImage 
-                            src={post.image_one}
-                            width={'100%'} height={'100%'}
-                            alt={post.tittle}
-                            placeholder={<Skeleton variant="rectangular" width="100%" height={300} />}
-                            />
+                        <Link to={`post/${post.id}`}>
+                            <LazyLoadImage 
+                                src={post.image_one}
+                                width={'100%'} height={'100%'}
+                                alt={post.tittle}
+                                placeholder={<Skeleton variant="rectangular" width="100%" height={300} />}
+                                />
+                        </Link>
                     </div>
                 :   <div className="articles-image-box">
                         <Skeleton variant="rectangular" width="100%" height={300} />
@@ -27,7 +30,6 @@ const PostResult = ({posts, loading}) => {
                 }
                 {post 
                 ?   <>
-                        
                         <div className="article-source_div">
                             <p className="article-source">{post.tagline}</p>
                             <p className="article-date">{getTime(post.date)}</p>

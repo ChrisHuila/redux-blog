@@ -6,6 +6,7 @@ import EntryPage from "./routes/EntryPage"
 import TrendingPage from "./Routes/TrendingPage";
 import Header from "./components/layout/Header"
 import SearchPage from "./routes/SearchPage";
+import PostPage from "./routes/PostPage";
 
 
 function App() {
@@ -30,6 +31,11 @@ function App() {
       path: "/entry",   
       element: <EntryPage/>,
       nodeRef: createRef(),
+    },
+    {
+      path: "/search/post/:id", 
+      element: <PostPage/>, 
+      nodeRef: createRef()
     }
 
   ]
