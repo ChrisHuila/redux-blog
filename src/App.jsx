@@ -20,7 +20,7 @@ function App() {
     {
       path: "/search",
       element: <SearchPage />,
-      nodeRef: createRef()
+      nodeRef: createRef(),
     },
     {
       path: "/trending", 
@@ -33,7 +33,7 @@ function App() {
       nodeRef: createRef(),
     },
     {
-      path: "/search/post/:id", 
+      path: "/post/:id", 
       element: <PostPage/>, 
       nodeRef: createRef()
     }

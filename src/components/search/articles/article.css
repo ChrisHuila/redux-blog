@@ -48,6 +48,12 @@
     margin-top: .5rem;
     text-align: center;
 }
+.article-views{
+    margin: 0;
+    margin-top: .5rem;
+    font-weight: 300;
+    font-size: var(--smaller-font-size);
+}
 .article-headline{
     font-size: var(--normal-font-size);
     color: var(--text-color);

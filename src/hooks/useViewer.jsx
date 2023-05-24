@@ -7,11 +7,9 @@ const useViewer = ({id}) => {
 
     const dispatch = useDispatch()
 
-
     const { firebase } = useSelector(state => state.postReducer);
     const { viewer, viewid } = useSelector(state => state.viewer);
 
-    const user = useRef(null)
     const previousId = useRef(viewid)
 
     const setUserIP = (ip) => dispatch(getIPAction(ip));
@@ -25,23 +23,21 @@ const useViewer = ({id}) => {
             const result = await data.json();
 
             const {ip} = result;
+
             setUserIP(ip);
         }
         getIP();
     },[])
 
     useEffect(() => {
-        console.log(previousId.current);
 
-        if(!viewer || user.current === viewer || previousId.current === id) return;
-
-        user.current = viewer;
+        if(!viewer ||  previousId.current === id) return;
         previousId.current = id
 
         currentPost(id)
         firebase.updateViews(id);
 
-    }, [viewer, viewid])
+    }, [viewer, id])
 
 }
 

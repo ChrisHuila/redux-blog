@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 
 const PostPage = () => {
     const {id} = useParams();
-
     return (
         <>
             <h2>Post</h2>

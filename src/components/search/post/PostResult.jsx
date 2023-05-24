@@ -1,13 +1,10 @@
 import { Link } from "react-router-dom";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Skeleton from "@mui/material/Skeleton";
+import elapsedTime from "../../helpers/elapsedTime";
 
 const PostResult = ({posts, loading}) => {
 
-     // Display the current date
-     const getTime = (time) => {
-        return new Date(time).toLocaleDateString()
-    }
     return (
         <ul className="articles">
         {(loading ? Array.from(new Array(8)) : posts)
@@ -15,7 +12,7 @@ const PostResult = ({posts, loading}) => {
             <li className="article" key={i}>
                 {post 
                 ?   <div className="articles-image-box">
-                        <Link to={`post/${post.id}`}>
+                        <Link to={`/post/${post.id}`}>
                             <LazyLoadImage 
                                 src={post.image_one}
                                 width={'100%'} height={'100%'}
@@ -29,11 +26,15 @@ const PostResult = ({posts, loading}) => {
                     </div>
                 }
                 {post 
-                ?   <>
+                ?   <>  
                         <div className="article-source_div">
-                            <p className="article-source">{post.tagline}</p>
-                            <p className="article-date">{getTime(post.date)}</p>
+                            {post.views > 0 
+                            ? <p className="article-views"><span>{post.views} </span>views</p> 
+                            :<p className="article-views"><i className="bi bi-stars" style={{color: "#FF7A42"}} ></i> Take a look at this post</p>
+                            }
+                            <p className="article-date">{elapsedTime(post.date)}</p>
                         </div>
+                        <p className="article-source">{post.tagline}</p>
                         <p className="article-headline">{post.tittle}</p>
                     </>
                 :  
