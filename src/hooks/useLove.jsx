@@ -1,9 +1,30 @@
+
 import { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { getIPAction, getIDpostAction } from "../actions/viewerAction";
 
-const useViewer = ({id}) => {
+const useLove = ({id}) => {
+
+    const user = {
+        displayName: 'camila',
+        photoURL: "www",
+        id: '123456'
+    }
+    
+    const love = [
+        {
+            displayName: 'ana',
+            photoURL: "www",
+            id: '123457'
+        },
+        {
+            displayName: 'valeria',
+            photoURL: "www",
+            id: '123458'
+        },
+        
+    ]
 
     const dispatch = useDispatch()
 
@@ -16,21 +37,6 @@ const useViewer = ({id}) => {
     const currentPost = (id) => dispatch(getIDpostAction(id)); 
 
     useEffect(() => {
-
-        // get ip viewer
-        const getIP = async () => {
-            const url = "https://api64.ipify.org?format=json";
-            const data = await fetch(url);
-            const result = await data.json();
-
-            const {ip} = result;
-
-            setUserIP(ip);
-        }
-        getIP();
-    },[])
-
-    useEffect(() => {
         // update the views's post 
         if(!viewer ||  previousId.current === id) return;
         previousId.current = id
@@ -40,6 +46,10 @@ const useViewer = ({id}) => {
 
     }, [viewer, id])
 
+    useEffect(() => {
+        if(!user) return;
+    },[user])
+
 }
 
-export default useViewer;
+export default useLove;

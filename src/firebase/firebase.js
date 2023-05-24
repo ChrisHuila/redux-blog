@@ -19,15 +19,16 @@ class Firebase {
         this.app = initializeApp(firebaseConfig);
         this.db = getFirestore(this.app);
     }
+    
     // add to the collection´s post
-    async collect(post){
+    async collect(element, nameCollect){
         try {
-            const postRef = doc(collection(this.db, 'entries'));
+            const postRef = doc(collection(this.db, nameCollect));
             await setDoc(postRef, {
                 id: postRef.id, 
-                ...post});
+                ...element});
         } catch (error) {
-            console.log(error, 'desde agregar post');
+            console.log(error, 'desde agregar colleccion');
         }
     }
     async getCollet(){
