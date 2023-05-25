@@ -5,8 +5,7 @@ import {
 
 const initialState = {
     viewer: null,
-    viewid: null,
-    love: []
+    previousview: null,
 }
 
 export default function( state= initialState, action){
@@ -19,7 +18,7 @@ export default function( state= initialState, action){
         case GET_ID_POST:
             return{
                 ...state,
-                viewid: action.payload
+                previousview: action.payload
             }
 
         default:
