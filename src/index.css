@@ -72,6 +72,45 @@ body{
   }
 
   /* ================================= SEARCH PAGE ============================= */
+.no-margin{
+    margin: 0;
+}
+.no-padding{
+    padding: 0;
+}
+  @media (min-width: 1200px) {
+    .layout-sidebar{
+        display: grid;
+        grid-template-columns: 2fr 400px;
+        column-gap: 1rem;
+    } 
+  }
+  .sidebar-content{
+    background-color: #0a58ca;
+    /* height: 500px; */
+    position: sticky;
+    top: 70px;
+  }
+  .sidebar-tittle{
+    font-size: var(--h2-font-size);
+  }
+  .sidebar-recommended{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+.recommended-post{
+    display: grid;
+    grid-template-columns: 100px 2fr;
+}  
+.recommended-post img {
+    max-width: 100%;
+    width: 120px;
+    height: 100px;
+    object-fit: cover;
+} 
+
+
 
   .container-box {
     max-width: 1200px;
