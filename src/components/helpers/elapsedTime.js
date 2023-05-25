@@ -20,23 +20,51 @@ export default function elapsedTime(date){
     const elapsedmonths= Math.floor(elapsed / months)
     const elapsedyears = Math.floor(elapsed / years)
    
-    if(elapsedyears > 1){
-        return elapsedyears;
+    if(elapsedyears >= 1){
 
-    }else if(elapsedmonths > 1){
-        return elapsedmonths;
+        if(elapsedyears === 1){
+            return elapsedyears + " year ago";
+        }else{
+            return elapsedyears + " years ago";
+        }
+    }
+    
+    if(elapsedmonths >= 1){
 
-    }else if(elapseddays > 1){
-        return elapseddays + " days ago";
-
-    }else if(elapsedhours > 1){
-        return elapsedhours;
-
-    }else if(elapsedmins > 1){
-        return elapsedmins;
-
-    }else {
-        return elapsedsegs;
+        if(elapsedmonths === 1){
+            return elapsedmonths + " month ago";
+        }else{
+            return elapsedmonths + " months ago";
+        }
     }
 
+    if(elapseddays >= 1){
+
+        if(elapseddays === 1){
+            return elapseddays + " day ago";
+        }else{
+            return elapseddays + " days ago";
+        }
+    }
+
+    if(elapsedhours >= 1){
+
+        if(elapsedhours === 1){
+            return elapsedhours + " hour ago";
+        }else{
+            return elapsedhours + " hours ago";
+        }
+    }
+
+    if(elapsedmins >= 1){
+
+        if(elapsedmins === 1){
+            return elapsedmins + " min ago";
+        }else{
+            return elapsedmins + " mins ago";
+        }
+    }
+    
+    return elapsedsegs + "segs ago";
+    
 }
