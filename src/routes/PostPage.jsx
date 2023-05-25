@@ -9,21 +9,17 @@ const PostPage = () => {
     const {id} = useParams();
 
     return (
-        <div className="">
+        <>
             <div className="container-box layout-sidebar pt-4">
                 <main style={{border: '1px solid #ccc'}}>
-                    <p>Post</p>
-                    {/* <Views 
-                    id={id}
-                    /> */}
+                    {/* <Views id={id}/> */}
                     <Prueba />
                 </main>
                 <Sidebar />
             </div>
-                <SlideEntries titulo="hola"/>
-           
-        </div>
-            
+                <SlideEntries titulo="esto es una prueba"/>
+        </>
+
     );
 }
  
