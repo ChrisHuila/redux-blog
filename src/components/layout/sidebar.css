@@ -7,8 +7,8 @@
 } 
 }
 .sidebar-content{
-    /* position: sticky; */
-    /* top: 80px; */
+    position: sticky;
+    top: 80px;
     padding-bottom: 180px;
 }
 .sidebar-tittle{
@@ -20,33 +20,31 @@
     border-bottom: 1px solid #333;
 }
 .sidebar-recommended{
-list-style: none;
-padding: 0;
-margin: 0;
-font-family: 'Roboto', sans-serif;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
 }
 .recommended-post{
-display: grid;
-grid-template-columns: 100px 2fr;
-gap: 1rem;
-padding: 14px 0;
-border-bottom: .5px solid #e8e8e8;
+    display: grid;
+    grid-template-columns: 100px 2fr;
+    gap: 1rem;
+    padding: 14px 0;
+    border-bottom: .5px solid #e8e8e8;
 } 
 .recommended-post:first-child{
     padding-top: 0;
 }
-.recommended-post:last-child{
-    border-bottom: none;
-}
+
 .recommended-box-img{
     overflow: hidden;
 }
 .recommended-post img {
-max-width: 100%;
-width: 120px;
-height: 100px;
-object-fit: cover;
-transition: .4s ease all;
+    max-width: 100%;
+    width: 120px;
+    height: 100px;
+    object-fit: cover;
+    transition: .4s ease all;
 }
 .recommended-post img:hover {
     cursor: pointer;
@@ -59,7 +57,6 @@ transition: .4s ease all;
 }
 .sidebar-main{
     font-size: var(--normal-font-size);
-    /* font-family: 'Roboto', sans-serif; */
     color: #dc3545;
     margin: 0;
     font-weight: 700;
@@ -72,26 +69,20 @@ transition: .4s ease all;
 }
 .sidebar-headline{
     font-size: var(--normal-font-size);
-    /* font-family: 'Roboto', sans-serif; */
-
     color: var(--text-color);
     font-weight: 700;
     margin: 0;
-    /* margin-top: .5rem; */
 }
 .recommended-box-advertising{
-    margin-top: 1rem;
-    width: 80%;
+    width: 100%;
     overflow: hidden;
-    /* margin: 0 auto; */
 }
 
 .recommended-box-advertising img {
-max-width: 100%;
-width: 100%;
-/* height: 100px; */
-/* object-fit: cover; */
-transition: .4s ease all;
+    margin-top: 10px;
+    max-width: 100%;
+    width: 100%;
+    transition: .4s ease all;
 }
 .recommended-box-advertising img:hover {
     cursor: pointer;
