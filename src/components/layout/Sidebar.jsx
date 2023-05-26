@@ -1,5 +1,6 @@
 import RecommenedPost from "../recommendedpost/RecommenedPost";
 import "./sidebar.css";
+import imgAdvertising from "../../assets/img/advertising.jpg"
 
 const Sidebar = () => {
 
@@ -12,6 +13,10 @@ const Sidebar = () => {
               <RecommenedPost />
               <RecommenedPost />
             </ul>
+            
+            <div className="recommended-box-advertising">
+                <img src={imgAdvertising} alt="img-advertising" />
+            </div>
           </div>
       
         </aside>
