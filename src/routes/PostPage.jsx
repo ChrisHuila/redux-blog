@@ -10,14 +10,15 @@ const PostPage = () => {
 
     return (
         <>
-            <div className="container-box layout-sidebar pt-4">
+            <div className="container-box layout-sidebar">
                 <main style={{border: '1px solid #ccc'}}>
                     {/* <Views id={id}/> */}
                     <Prueba />
                 </main>
                 <Sidebar />
             </div>
-                <SlideEntries titulo="esto es una prueba"/>
+            
+            <SlideEntries titulo="esto es una prueba"/>
         </>
 
     );

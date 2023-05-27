@@ -7,7 +7,7 @@ const RecommenedPost = () => {
                 <img src={image} alt="img-recomended" />
             </div> 
 
-            <div className="">
+            <div>
                 <div className="sidebar-div-data">
                     <p className="sidebar-main">Lucasfilms</p>
                     <p className="sidebar-date">May / 22 / 23</p>

@@ -1,16 +1,15 @@
-
-@media (min-width: 992px) {
 .layout-sidebar{
     display: grid;
-    grid-template-columns: 2fr 350px;
-    column-gap: 2rem;
-} 
 }
-.sidebar-content{
-    position: sticky;
-    top: 80px;
-    padding-bottom: 180px;
+
+.layout-sidebar aside{
+    grid-row: 1/2;
+    padding: 25px 0;
 }
+.sidebar-box-recommended{
+    display: none;
+}
+
 .sidebar-tittle{
     font-size: var(--h2-font-size);
     font-family: 'Roboto', sans-serif;
@@ -74,7 +73,9 @@
     margin: 0;
 }
 .recommended-box-advertising{
+    max-width: 350px;
     width: 100%;
+    margin: 0 auto;
     overflow: hidden;
 }
 
@@ -88,3 +89,21 @@
     cursor: pointer;
     transform: scale(1.05);
 } 
+@media (min-width: 1200px) {
+    .layout-sidebar{
+        grid-template-columns: 2fr 350px;
+        column-gap: 2rem;
+    }
+    .layout-sidebar aside{
+        grid-row: initial;
+        padding: initial;
+    }
+    .sidebar-content{
+        position: sticky;
+        top: 80px;
+        padding-bottom: 180px;
+    }
+    .sidebar-box-recommended{
+        display: initial;
+    }
+}
