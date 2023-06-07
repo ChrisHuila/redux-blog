@@ -1,16 +1,17 @@
 import {  useMemo, useRef, useCallback, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { getPostsAction, loadPostsAction, sortedpostsAction } from "../actions/postAction";
+import { getAllPostAction, getSearchPostsAction, loadPostsAction, sortedpostsAction } from "../actions/postAction";
 
 const usePosts = ({sort, search}) => {
     const dispatch = useDispatch()
     const previousSearch = useRef(search)
 
     const { post } = useSelector(state => state.checkbox);
-    const { firebase, posts } = useSelector(state => state.postReducer);
+    const { firebase, allposts, posts } = useSelector(state => state.postReducer);
     
-    const addPosts =  firePosts =>  dispatch(getPostsAction(firePosts))
+    const addAllPosts =  firePosts =>  dispatch(getAllPostAction(firePosts))
+    const addSearchPosts =  firePosts =>  dispatch(getSearchPostsAction(firePosts))
     const postsSorted = (sortedposts) => dispatch(sortedpostsAction(sortedposts))
 
     const getPosts = useCallback( async (search) => {
@@ -28,15 +29,21 @@ const usePosts = ({sort, search}) => {
             const firePosts = await firebase.getColletBy(search);
 
             // add the posts
-            addPosts(firePosts)
+            addSearchPosts(firePosts)
         }
     ,[post]) 
 
     const getAllPosts =  async () => {
         dispatch(loadPostsAction())
-        
-        const postFirebase = await firebase.getCollet();
-        addPosts(postFirebase)
+
+        // Only make the request once and save the response for future use
+        if(allposts.length === 0){
+            const postFirebase = await firebase.getCollet();
+            addAllPosts(postFirebase)
+            addSearchPosts(postFirebase)
+        }else {
+            addSearchPosts(allposts) 
+        }
     }
 
     // sort by title

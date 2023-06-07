@@ -1,6 +1,7 @@
 import firebase from "../firebase/firebase";
 import {
     LOAD_POSTS, 
+    GET_ALLPOSTS,
     GET_POST_SUCCES,
     SORTED_POSTS
 } from "../types";
@@ -9,7 +10,8 @@ const initialState = {
     firebase,
     posts: [],
     loading: true,
-    sortedposts:[]
+    sortedposts:[],
+    allposts:[]
 }
 
 export default function(state= initialState, action){
@@ -18,6 +20,12 @@ export default function(state= initialState, action){
             return{
                 ...state,
                 loading: true,
+            }
+        case GET_ALLPOSTS:
+            return{
+                ...state,
+                loading: false,
+                allposts: action.payload
             }
         case GET_POST_SUCCES:
             return{

@@ -1,5 +1,6 @@
 import {
     LOAD_POSTS, 
+    GET_ALLPOSTS,
     GET_POST_SUCCES,
     SORTED_POSTS
 } from "../types";
@@ -13,7 +14,17 @@ const loadPosts = () => ({
     type:LOAD_POSTS
 })
 
-export function getPostsAction(posts){
+export function getAllPostAction(posts){
+    return (dispatch) => {
+        dispatch(downloadAllPostSucces(posts))
+    }
+}
+const downloadAllPostSucces = (post) => ({
+    type: GET_ALLPOSTS,
+    payload: post
+})
+
+export function getSearchPostsAction(posts){
     return (dispatch) => {
         dispatch(downloadPostsSucces(posts))
     }
