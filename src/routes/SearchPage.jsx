@@ -30,7 +30,7 @@ const SearchPage = () => {
         const {name} = e.target
         if(name === 'post') {
             dispatch(showPost())
-            getAllPosts()
+            // getAllPosts()
         }else {
             dispatch(showNews()) 
         }

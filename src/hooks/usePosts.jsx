@@ -51,6 +51,10 @@ const usePosts = ({sort, search}) => {
         postsSorted(sortedposts)
     }, [sortedposts])
 
+    useEffect(() => {
+        getAllPosts()
+    }, [])
+
     return{getPosts, getAllPosts}
 }
 

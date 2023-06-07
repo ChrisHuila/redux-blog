@@ -114,6 +114,9 @@ body{
     text-align: center;
     margin-top: 1rem;
 }
+/* .search-div_checkbox label {
+    margin-right: .2rem;
+} */
 .search-form input[type="checkbox"] {
     margin: 0 .5rem;
 }
