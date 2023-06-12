@@ -14,15 +14,21 @@ const SwiperTags = () => {
 
     return (
         <div className="swiperTag-container">
+            <h2 style={{ margin: "2rem 0" }}>Tags</h2>
             <Swiper
                 navigation={true}
                 modules={[Navigation]}
-                spaceBetween={20}
-                slidesPerView={13}>
+                spaceBetween={10}
+                // createElements={true}
+                slidesPerView={numberSwiper()}
+                // prettier-ignore
+            >
                 {tags?.map(tag => (
-                    <SwiperSlide key={tag}>
-                        <div className="">
-                            <button className="swiperTag">{tag}</button>
+                    <SwiperSlide
+                        key={tag}
+                        className="SwiperSlide-tag">
+                        <div className="swiperTag-button_div">
+                            <button className="swiperTag-button">{tag}</button>
                         </div>
                     </SwiperSlide>
                 ))}

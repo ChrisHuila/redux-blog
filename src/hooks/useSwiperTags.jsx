@@ -19,15 +19,15 @@ const useSwiperTags = ({ allposts }) => {
     const numberSwiper = () => {
         if (width) {
             if (width > 1100) {
-                return 5;
+                return 8;
             } else if (width > 850) {
-                return 4;
+                return 7;
             } else if (width > 621) {
-                return 3;
+                return 6;
             } else if (width > 570) {
-                return 2;
+                return 5;
             } else {
-                return 1;
+                return 4;
             }
         }
     };
@@ -41,7 +41,7 @@ const useSwiperTags = ({ allposts }) => {
 
         // return [...tagsArray].sort((a, b) => a.localeCompare(b));
         // prettier-ignore
-        return ["batalla", "strange", "primer", "tagg", "comedia", "cine", "misterio", "real madrid", "misterio oscuro", "drama", "naruto", "spider-man", "bankai", "ejercicio", "arte dramatico", "cine romantico"];
+        return ["batalla", "strange", "primer", "tagg", "comedia", "cine", "misterio", "real", "misterio", "drama", "naruto", "spider", "bankai", "ejercicio", "arte", "cine"];
     }, [allposts]);
 
     return { numberSwiper, tags: sortedTags };

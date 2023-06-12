@@ -3,7 +3,18 @@
     width: 95%;
     margin: 0 auto;
 }
-.swiperTag {
+.swiperTag-container .swiper-button-next:after,
+.swiperTag-container .swiper-button-prev::after {
+    font-size: 20px;
+}
+
+.SwiperSlide-tag {
+    width: 100%;
+}
+.swiperTag-button_div {
+    display: block;
+}
+.swiperTag-button {
     border: 1px solid #999;
     padding: 4px 12px;
     border-radius: 5px;
@@ -16,7 +27,7 @@
     transition: all 0.2s;
 }
 
-.swiperTag:hover {
+.swiperTag-button:hover {
     background: #1a1a1a;
     color: #fff;
     border-color: #1a1a1a;
