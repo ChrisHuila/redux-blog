@@ -1,0 +1,23 @@
+.swiperTag-container {
+    max-width: 1250px;
+    width: 95%;
+    margin: 0 auto;
+}
+.swiperTag {
+    border: 1px solid #999;
+    padding: 4px 12px;
+    border-radius: 5px;
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
+    font-size: 15px;
+    text-transform: capitalize;
+    background: transparent;
+    transition: all 0.2s;
+}
+
+.swiperTag:hover {
+    background: #1a1a1a;
+    color: #fff;
+    border-color: #1a1a1a;
+}
