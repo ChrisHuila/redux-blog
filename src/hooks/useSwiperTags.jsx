@@ -19,15 +19,17 @@ const useSwiperTags = ({ allposts }) => {
     const numberSwiper = () => {
         if (width) {
             if (width > 1100) {
-                return 8;
+                return 9;
             } else if (width > 850) {
-                return 7;
+                return 8;
             } else if (width > 621) {
-                return 6;
+                return 7;
             } else if (width > 570) {
+                return 6;
+            } else if (width > 500) {
                 return 5;
             } else {
-                return 4;
+                return 3;
             }
         }
     };
