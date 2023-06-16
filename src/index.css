@@ -1,42 +1,42 @@
 :root {
-  /*========== Colors ==========*/
-  --first-color: #0e2342;
-  --first-color-alt: #0a58ca;
-  --body-color: #fff;
-  --text-color: #0f0f0f;
-  /* --title-color:
+    /*========== Colors ==========*/
+    --first-color: #0e2342;
+    --first-color-alt: #0a58ca;
+    --body-color: #fff;
+    --text-color: #0f0f0f;
+    /* --title-color:
  
    */
 
-  /*========== typography ==========*/
-  --biggest-font-size: 1.75rem;
-  --h1-font-size: 1.5rem;
-  --h2-font-size: 1.25rem;
-  --h3-font-size: 1rem;
-  --normal-font-size: .938rem;
-  --small-font-size: .813rem;
-  --smaller-font-size: .75rem;
-  --tiny-font-size: .625rem;
-  /*========== z index ==========*/
-  --z-tooltip: 10;
-  --z-fixed: 100;
-  --z-modal: 1000;
+    /*========== typography ==========*/
+    --biggest-font-size: 1.75rem;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1rem;
+    --normal-font-size: 0.938rem;
+    --small-font-size: 0.813rem;
+    --smaller-font-size: 0.75rem;
+    --tiny-font-size: 0.625rem;
+    /*========== z index ==========*/
+    --z-tooltip: 10;
+    --z-fixed: 100;
+    --z-modal: 1000;
 }
 
 /* Responsive typography */
 @media screen and (min-width: 968px) {
-  :root {
-    --biggest-font-size: 2.5rem;
-    --h1-font-size: 2.25rem;
-    --h2-font-size: 1.5rem;
-    --h3-font-size: 1.25rem;
-    --normal-font-size: 1rem;
-    --small-font-size: .875rem;
-    --smaller-font-size: .813rem;
-  }
+    :root {
+        --biggest-font-size: 2.5rem;
+        --h1-font-size: 2.25rem;
+        --h2-font-size: 1.5rem;
+        --h3-font-size: 1.25rem;
+        --normal-font-size: 1rem;
+        --small-font-size: 0.875rem;
+        --smaller-font-size: 0.813rem;
+    }
 }
-body{
-  background-color: var(--body-color);
+body {
+    background-color: var(--body-color);
 }
 .content {
     position: relative;
@@ -47,61 +47,62 @@ body{
     position: absolute;
     left: 0;
     right: 0;
-  }
-  
-  .page-enter {
+}
+
+.page-enter {
     opacity: 0;
     transform: scale(1.1);
-  }
-  
-  .page-enter-active {
+}
+
+.page-enter-active {
     opacity: 1;
     transform: scale(1);
     transition: opacity 300ms, transform 300ms;
-  }
-  
-  .page-exit {
+}
+
+.page-exit {
     opacity: 1;
     transform: scale(1);
-  }
+}
 
-  .page-exit-active {
+.page-exit-active {
     opacity: 0;
     transform: scale(0.9);
     transition: opacity 300ms, transform 300ms;
-  }
+}
 
-  /* ================================= SEARCH PAGE ============================= */
+/* ================================= SEARCH PAGE ============================= */
 
 .container-box {
     max-width: 1200px;
     margin: 0 auto;
     width: 95%;
 }
-.search-form{
+.search-form {
     margin: 4rem 0;
     display: flex;
     justify-content: center;
 }
-.search-form_container{
+.search-form_container {
     width: 100%;
 }
 .search-div_query {
     text-align: center;
     position: relative;
 }
-.search-input{
+.search-input {
     width: 100%;
     border: none;
     border-bottom: 3px solid #ccc;
     padding: 12px 20px;
-    outline:none;
+    padding-right: 40px;
+    outline: none;
     transition: 0.5s;
 }
 .search-input:focus {
     border-bottom: 3px solid #555;
 }
-.search-button{
+.search-button {
     border: none;
     background-color: transparent;
     padding: 12px 5px;
@@ -118,33 +119,33 @@ body{
     margin-right: .2rem;
 } */
 .search-form input[type="checkbox"] {
-    margin: 0 .5rem;
+    margin: 0 0.5rem;
 }
 
 @media (min-width: 576px) {
-    .search-form_container{
+    .search-form_container {
         width: 90%;
     }
 }
 
 @media (min-width: 768px) {
-    .search-form_container{
+    .search-form_container {
         width: 80%;
     }
 }
 @media (min-width: 992px) {
-    .search-form_container{
+    .search-form_container {
         width: 75%;
     }
 }
 @media (min-width: 1200px) {
-    .search-form_container{
+    .search-form_container {
         width: 55%;
     }
-    .search-div_query{
+    .search-div_query {
         text-align: end;
     }
-    .search-div_checkbox{
+    .search-div_checkbox {
         text-align: end;
-    } 
+    }
 }
