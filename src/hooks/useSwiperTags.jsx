@@ -39,11 +39,8 @@ const useSwiperTags = ({ allposts }) => {
         const tagsArray = [];
 
         allposts?.forEach(post => post.taggs?.forEach(tag => (!tagsArray.includes(tag) ? tagsArray.push(tag) : null)));
-        console.log(tagsArray);
-
-        // return [...tagsArray].sort((a, b) => a.localeCompare(b));
-        // prettier-ignore
-        return ["batalla", "strange", "primer", "tagg", "comedia", "cine", "misterio", "real", "misterio", "drama", "naruto", "spider", "bankai", "ejercicio", "arte", "cine"];
+        return [...tagsArray].sort((a, b) => a.localeCompare(b));
+        
     }, [allposts]);
 
     return { numberSwiper, tags: sortedTags };
